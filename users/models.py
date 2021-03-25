@@ -6,8 +6,37 @@ from django.core.mail import send_mail
 from django.utils.html import strip_tags
 from django.shortcuts import reverse
 from django.template.loader import render_to_string
+from core import models as core_models
 
-# Create your models here.
+
+class AbstractItem(core_models.TimeStampedModel):
+
+    """ Abstract Item """
+
+    name = models.CharField(max_length=255)
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.name
+
+
+class AttentionField(AbstractItem):
+
+    """ Attention Field Definition """
+
+    class Meta:
+        verbose_name = "Attention Field"
+        ordering = ["name"]
+
+
+class AttentionLanguage(AbstractItem):
+
+    """ Attention Language Definition """
+
+    class Meta:
+        verbose_name = "Attention Language"
 
 
 class User(AbstractUser):
@@ -35,8 +64,7 @@ class User(AbstractUser):
     )
 
     avatar = models.ImageField(upload_to="avatars", blank=True)
-    gender = models.CharField(choices=GENDER_CHOICES,
-                              max_length=10, blank=True)
+    gender = models.CharField(choices=GENDER_CHOICES, max_length=10, blank=True)
     bio = models.TextField(blank=True)
 
     email_verified = models.BooleanField(default=False)
@@ -44,6 +72,10 @@ class User(AbstractUser):
     login_method = models.CharField(
         max_length=50, choices=LOGIN_CHOICES, default=LOGIN_EMAIL
     )
+    att_field = models.ManyToManyField(AttentionField, blank=True)
+    att_language = models.ManyToManyField(AttentionLanguage, blank=True)
+    followers = models.ManyToManyField("self")
+    followings = models.ManyToManyField("self")
 
     def get_absolute_url(self):
         return reverse("users:profile", kwargs={"pk": self.pk})
