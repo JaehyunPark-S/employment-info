@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block page_name %}
+    Home
+{% endblock page_name %}
+
+
+{% block content %}
+{% load static %}
+    <div class="infinite-container">
+    {% for board in boards %}
+    <div class="infinite-item">
+        <h1>{{board.name}} / {{board.host}}</h1>
+    </div>
+    {% endfor %}
+    </div>
+    <h5>
+        
+        {% if page is not 1 %}
+            <a href="?page={{page|add:-1}}">Previous</a>
+        {% endif %}
+        page {{page}} of {{page_count}}
+        
+        {% if not page == page_count %}
+        <a href="?page={{page|add:1}}">Next</a>
+        {% endif %}
+    </h5>
+
+        
+
+
+
+    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+    <script src="/static/js/infinite.min.js"></script>
+    <script>
+        var infinite = new Waypoint.Infinite({
+            element: $('.infinite-container')[0],
+
+            offset: 'bottom-in-view',
+
+            onBeforePageLoad: function () {
+
+            },
+            onAfterPageLoad: function() {
+
+            }
+        });
+    </script>
+
+{% endblock content %}

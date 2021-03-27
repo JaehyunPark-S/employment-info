@@ -1,0 +1,13 @@
+{
+  "name": "employment_info",
+  "version": "1.0.0",
+  "description": "Make with Python, Django, Tailwind, etc..",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaehyunPark-S/employment-info.git"
+  },
+  "homepage": "https://github.com/JaehyunPark-S/employment-info#readme",
+  "dependencies": {
+    "waypoints": "^4.0.1"
+  }
+}
