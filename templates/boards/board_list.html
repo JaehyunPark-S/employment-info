@@ -14,22 +14,11 @@
     {% endfor %}
     </div>
     <h5>
-        
-        {% if page_obj.has_previous %}
-            <a href="?page={{page_obj.previous_page_number}}">Previous</a>
-        {% endif %}
-        page {{page_obj.number}} of {{page_obj.paginator_num_pages}}
-        
         {% if page_obj.has_next %}
-        <a href="?page={{page_obj.next_page_number}}">Next</a>
+        <a class="infinite-more-link" href="?page={{page_obj.next_page_number}}"></a>
         {% endif %}
-    </h5>
-
-        
-
-
-
-    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+    </h5> 
+    <script src="{% static 'js/jquery.waypoints.min.js'%}"></script>
     <script src="/static/js/infinite.min.js"></script>
     <script>
         var infinite = new Waypoint.Infinite({
