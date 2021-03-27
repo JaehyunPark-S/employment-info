@@ -8,7 +8,6 @@ class List(core_models.TimeStampedModel):
 
     name = models.CharField(max_length=80)
     user = models.ForeignKey("users.User", on_delete=models.CASCADE)
-    # follow_user = models.ManyToManyField("users.User", blank=True)
 
     def __str__(self):
         return self.name

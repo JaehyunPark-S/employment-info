@@ -72,10 +72,14 @@ class User(AbstractUser):
     login_method = models.CharField(
         max_length=50, choices=LOGIN_CHOICES, default=LOGIN_EMAIL
     )
-    att_field = models.ManyToManyField(AttentionField, blank=True)
-    att_language = models.ManyToManyField(AttentionLanguage, blank=True)
-    followers = models.ManyToManyField("self")
-    followings = models.ManyToManyField("self")
+    att_field = models.ManyToManyField(
+        "AttentionField", related_name="users", blank=True
+    )
+    att_language = models.ManyToManyField(
+        "AttentionLanguage", related_name="users", blank=True
+    )
+    followers = models.ManyToManyField("self", related_name="users", blank=True)
+    followings = models.ManyToManyField("self", related_name="users", blank=True)
 
     def get_absolute_url(self):
         return reverse("users:profile", kwargs={"pk": self.pk})

@@ -8,7 +8,9 @@ class Board(core_models.TimeStampedModel):
 
     name = models.CharField(max_length=140, null=True)
     description = models.TextField()
-    host = models.ForeignKey("users.User", on_delete=models.CASCADE)
+    host = models.ForeignKey(
+        "users.User", related_name="board", on_delete=models.CASCADE
+    )
     recommended = models.IntegerField()
 
     def __str__(self):
