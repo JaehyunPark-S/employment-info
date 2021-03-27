@@ -7,7 +7,7 @@
 {% block content %}
 {% load static %}
     <div class="infinite-container">
-    {% for board in boards %}
+    {% for board in object_list %}
     <div class="infinite-item">
         <h1>{{board.name}} / {{board.host}}</h1>
     </div>
@@ -15,13 +15,13 @@
     </div>
     <h5>
         
-        {% if page is not 1 %}
-            <a href="?page={{page|add:-1}}">Previous</a>
+        {% if page_obj.has_previous %}
+            <a href="?page={{page_obj.previous_page_number}}">Previous</a>
         {% endif %}
-        page {{page}} of {{page_count}}
+        page {{page_obj.number}} of {{page_obj.paginator_num_pages}}
         
-        {% if not page == page_count %}
-        <a href="?page={{page|add:1}}">Next</a>
+        {% if page_obj.has_next %}
+        <a href="?page={{page_obj.next_page_number}}">Next</a>
         {% endif %}
     </h5>
 
