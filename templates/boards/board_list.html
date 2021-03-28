@@ -17,7 +17,8 @@
         {% if page_obj.has_next %}
         <a class="infinite-more-link" href="?page={{page_obj.next_page_number}}"></a>
         {% endif %}
-    </h5> 
+    </h5>
+
     <script src="{% static 'js/jquery.waypoints.min.js'%}"></script>
     <script src="/static/js/infinite.min.js"></script>
     <script>
@@ -36,3 +37,4 @@
     </script>
 
 {% endblock content %}
+    

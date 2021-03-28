@@ -1,0 +1,9 @@
+    <a href="/">Pcruit</a>
+    <ul>
+      
+      {% if user.is_authenticated %}
+      <li><a href="{% url "users:logout" %}">Logout</a></li>        
+      {% else %}
+      <li><a href="{% url "users:login" %}">Login</a></li>
+      {% endif %}
+    </ul>

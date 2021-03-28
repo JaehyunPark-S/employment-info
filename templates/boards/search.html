@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block page_title %}
+    Search
+{% endblock page_title %}
+    
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block content %}
+    
+    <h2>Search!</h2>
+
+    <form method="get" action="{% url "boards:search" %}">
+        <select>
+            <option value="name">
+                이름
+            </option>
+            <option value="description">
+                내용
+            </option>
+        </select>
+        <input value="{{description}}" name="description" placeholder="Search..." />
+        <button>검색</button>
+    </form>
+
+{% endblock content %}
+    
