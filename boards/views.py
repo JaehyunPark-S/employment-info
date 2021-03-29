@@ -14,5 +14,5 @@ class HomeView(ListView):
 
 
 def search(request):
-    description = request.GET.get("description", " ")
-    return render(request, "boards/search.html", {"description": description})
+    host = request.GET.get("host", " ")
+    return render(request, "boards/search.html", {"host": host})

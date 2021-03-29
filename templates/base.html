@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>{% block page_title %}{% endblock page_title %} | Recruit</title>
   </head>
@@ -14,19 +15,14 @@
       {% block search-bar %}
 
       <form method="get" action="{% url "boards:search" %}">
-        <input name="description" placeholder="Search..." />
+        <input name="host" placeholder="Search..." />
       </form>
-        
       {% endblock search-bar %}
     </header>
 
     {% block content %}{% endblock %}
 
     {% include "partials/footer.html" %}
-
     
-    {% block script %}
-    {% endblock script %}
-      
   </body>
 </html>
