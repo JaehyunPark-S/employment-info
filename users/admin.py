@@ -33,6 +33,7 @@ class CustomUserAdmin(UserAdmin):
                     "att_language",
                     "followers",
                     "followings",
+                    "login_method",
                 )
             },
         ),
@@ -40,11 +41,14 @@ class CustomUserAdmin(UserAdmin):
 
     list_display = (
         "username",
+        "first_name",
         "email",
         "count_att_field",
         "count_att_language",
         "count_followers",
         "count_followings",
+        "email_verified",
+        "login_method",
     )
 
     filter_horizontal = (

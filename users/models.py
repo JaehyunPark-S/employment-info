@@ -92,7 +92,7 @@ class User(AbstractUser):
                 "emails/verify_email.html", {"secret": secret}
             )
             send_mail(
-                "Verify Airbnb Account",
+                "Verify Employment Information Account",
                 strip_tags(html_message),
                 settings.EMAIL_FROM,
                 [self.email],

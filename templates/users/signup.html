@@ -2,7 +2,7 @@
 
 
 {% block page_title %}
-    로그인
+    회원가입
 {% endblock page_title %}
     
 
@@ -10,12 +10,11 @@
 {% endblock search-bar %}
 
 {% block content %}
-{% include 'partials/social_login.html' %}    
-
-<form method="POST" action="{% url "users:login" %}">
+{% include 'partials/social_login.html' %} 
+<form method="POST" action="{% url "users:signup" %}">
     {% csrf_token %}
     {{form.as_p}}
-    <button>로그인</button>
+    <button>회원가입</button>
 </form>
 {% endblock content %}
     
