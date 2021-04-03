@@ -1,4 +1,4 @@
-    <a href="/">Pcruit</a>
+    <a href="/">Recruit</a>
     <ul>
       
       {% if user.is_authenticated %}
@@ -7,4 +7,5 @@
       <li><a href="{% url "users:login" %}">로그인</a></li>
       <li><a href="{% url "users:signup" %}">회원가입</a></li>
       {% endif %}
+      {% include 'partials/search_form.html' %}
     </ul>

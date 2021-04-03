@@ -4,5 +4,7 @@ from . import views
 app_name = "recruits"
 
 urlpatterns = [
-    path("info/", views.RecruitView.as_view(), name="info"),
+    path("", views.RecruitView.as_view(), name="info"),
+    path("search/", views.search, name="search"),
+    path("autosuggest/", views.autosuggest, name="autosuggest"),
 ]

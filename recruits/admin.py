@@ -6,7 +6,7 @@ from . import models
 class RecuritAdmin(admin.ModelAdmin):
 
     list_display = (
-        "name",
+        "title",
         "enterprise",
         "host",
     )

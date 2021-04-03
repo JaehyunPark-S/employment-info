@@ -6,11 +6,15 @@
     "type": "git",
     "url": "git+https://github.com/JaehyunPark-S/employment-info.git"
   },
+  "scripts":{
+    "css":"gulp"
+  },
   "homepage": "https://github.com/JaehyunPark-S/employment-info#readme",
   "dependencies": {
     "waypoints": "^4.0.1"
   },
   "devDependencies": {
+    "autoprefixer": "^10.2.5",
     "gulp": "^4.0.2",
     "gulp-csso": "^4.0.1",
     "gulp-postcss": "^9.0.0",

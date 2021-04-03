@@ -6,7 +6,7 @@ class Recruit(core_models.TimeStampedModel):
 
     """ Room Model Definition" """
 
-    name = models.CharField(max_length=140, null=True)
+    title = models.CharField(max_length=140, null=True)
     enterprise = models.CharField(max_length=255, blank=True)
     description = models.TextField()
     host = models.ForeignKey(

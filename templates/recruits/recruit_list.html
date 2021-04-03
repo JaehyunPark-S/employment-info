@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block page_title %}
+    Home
+{% endblock page_title %}
+
+
+{% block content %}
+{% load static %}
+    <div>
+    {% for recruit in object_list %}
+    <div>
+        <h1>{{recruit.title}} / {{recruit.host}}</h1>
+    </div>
+    {% endfor %}
+    </div>
+    <h5>
+        {% if page_obj.has_previous %}
+                <a href="?page={{page_obj.previous_page_number}}">
+                    이전
+                </a>
+            {% endif %}
+
+            <span>{{page_obj.number}} of {{page_obj.paginator.num_pages}}</span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{page_obj.next_page_number}}">
+                    다음
+                </a>
+            {% endif %}
+    </h5>
+
+{% endblock content %}
