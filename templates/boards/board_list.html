@@ -6,19 +6,20 @@
 
 {% block content %}
 {% load static %}
-    <div class="infinite-container">
-    {% for board in object_list %}
-    <div class="infinite-item">
-        <h1>{{board.name}} / {{board.host}}</h1>
+    <div class="container mx-auto w-6/12">
+        <div class="infinite-container">
+            {% for board in object_list %}
+            <div class="infinite-item">
+                {% include 'partials/board_card.html' %}
+            </div>
+            {% endfor %}
+            </div>
+            <h5>
+                {% if page_obj.has_next %}
+                <a class="infinite-more-link" href="?page={{page_obj.next_page_number}}"></a>
+                {% endif %}
+            </h5>
     </div>
-    {% endfor %}
-    </div>
-    <h5>
-        {% if page_obj.has_next %}
-        <a class="infinite-more-link" href="?page={{page_obj.next_page_number}}"></a>
-        {% endif %}
-    </h5>
-
     <script src="{% static 'js/jquery.waypoints.min.js'%}"></script>
     <script src="/static/js/infinite.min.js"></script>
     <script>
@@ -35,5 +36,6 @@
             }
         });
     </script>
+    
 
 {% endblock content %}

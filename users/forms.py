@@ -4,8 +4,8 @@ from . import models
 
 class LoginForm(forms.Form):
 
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    email = forms.EmailField(label="이메일")
+    password = forms.CharField(widget=forms.PasswordInput, label="비밀번호")
 
     def clean(self):
         email = self.cleaned_data.get("email")
