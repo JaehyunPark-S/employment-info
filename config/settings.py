@@ -39,7 +39,12 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-THIRD_PARTY_APPS = ["django_seed,"]
+THIRD_PARTY_APPS = ["django_seed"]
+
+GRAPH_MODELS = {
+    "all_applications": True,
+    "group_models": True,
+}
 
 PROJECT_APPS = [
     "core.apps.CoreConfig",
@@ -51,7 +56,7 @@ PROJECT_APPS = [
     "conversations.apps.ConversationsConfig",
 ]
 
-INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
+INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + ["django_extensions"]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

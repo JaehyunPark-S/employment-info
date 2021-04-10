@@ -1,36 +1,60 @@
 <div class="w-full border border-gray-300 rounded-xl mb-4 p-3">
-    <div class="flex -mt-2 mb-3 justify-between items-center">
-        <p>
-            {{board.host}}
-        </p>
-        <!-- <div class="flex">
-          <div x-data="{ dropdownOpen: false }" class="relative">
-            <button @click="dropdownOpen = !dropdownOpen" class="relative z-10 block rounded-md bg-white p-2 focus:outline-none">
-              <svg class="h-5 w-5 text-gray-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-              </svg>
-            </button>
-          
-            <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
-          
-            <div x-show="dropdownOpen" class="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20">
-              <a href="#" class="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white">
-                수정
-              </a>
-              <a href="#" class="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white">
-                삭제
-              </a>
-            </div>
-          </div>
-      </div> -->
+  <div class="flex">
+    <div>
+      {% include "mixins/user_avatar.html" with user=board.host h_and_w='w-10 h-10' text='text-xl' %}
     </div>
-        <div class="-mt-6 border-b"><span class="text-xs font-light text-gray-600">팔로워 {{board.host.followers.count}}</span></div>
+    <div class="flex flex-col ml-5 w-full">
+      <div class="flex justify-between">
+      <span class="font-medium">{{board.host}} <a href="#" class="text-blue-500 hover:text-blue-600 text-sm">팔로우</a></span>
+      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+        <div class="flex justify-center">
+          <div class="flex items-center">
+            <span class="border"></span>
+              <div x-data="{ dropdownOpen: false }" class="relative">
+                <button @click="dropdownOpen = !dropdownOpen" class="relative z-10 block rounded p-1 focus:outline-none">
+                  <svg class="h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                  </svg>
+                </button>
+                <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-24 bg-white rounded-md overflow-hidden shadow-xl z-20">
+                  <a href="#" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">수정</a>
+                  <a href="#" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">삭제</a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <span class="text-xs font-light text-gray-600 -mt-2">팔로워 {{board.host.followers.count}}</span>
+    </div>
+  </div>
+    
     <div class="border-b mb-2 mt-2">
-        <p class="mb-2">
+        <p class="mb-2 mx-1.5">
             {{board.description}}
         </p>
     </div>
-    <div>
-        {{board.recommended}}
+    <div class="border-b mb-2">
+      <a href="#"><i class="far fa-thumbs-up text-blue-500 mb-2 mx-1.5 hover:text-blue-600"></i></a>  <span class="text-gray-600">{{board.recommended}}</span>
     </div>
-</div>
+    <div>
+      <button class="hover:bg-gray-200 rounded-md p-1 focus:outline-none btn_toggle" data-id="{{board.pk}}"><i class="far fa-comment-alt"></i><span class="ml-2">댓글</span></button>
+    </div>
+    <div class="hidden" id="til{{board.pk}}">
+      {% for comment in board.comment.all %}
+      <div class="border-section mb-2 mt-3">
+        <div class="mb-3 flex">
+            <div>
+                {% include "mixins/user_avatar.html" with user=comment.user h_and_w='w-7 h-7' text='text-lg' %}
+            </div>
+            <div class="flex flex-col ml-2 bg-gray-100 w-full p-2 rounded-md">
+                <span class="text-xs">{{comment.user.first_name}}</span>
+                <span class="text-xs text-gray-500">{{comment.created|date:'F Y'}}</span>
+                <span class="text-sm">{{comment.comment}}</span>
+            </div>
+        </div>
+        
+    </div>   
+      {% endfor %}
+    </div>
+</div> 

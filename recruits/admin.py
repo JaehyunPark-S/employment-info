@@ -7,6 +7,7 @@ class RecuritAdmin(admin.ModelAdmin):
 
     list_display = (
         "title",
-        "enterprise",
-        "host",
+        "company",
+        "location",
+        "link",
     )

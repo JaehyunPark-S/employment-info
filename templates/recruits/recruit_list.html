@@ -6,27 +6,36 @@
 
 {% block content %}
 {% load static %}
-    <div>
+    <div class="container mx-auto w-2/6">
     {% for recruit in object_list %}
-    <div>
-        <h1>{{recruit.title}} / {{recruit.host}}</h1>
+    <div class="mb-2">
+        <div class="flex border p-3">
+            <div>
+                <img src={{recruit.image}} width="50" height="50">
+            </div>
+            <div class="flex flex-col ml-5">
+                <span class="font-bold"><a href="{{recruit.link}}">{{recruit.title}}</a></span>
+                <span>{{recruit.company}}</span>
+                <span class="text-gray-400">{{recruit.location}} </span>
+            </div>
+        </div>
     </div>
     {% endfor %}
     </div>
-    <h5>
+    <div class="flex items-center justify-center mx-auto container mb-7 mt-7">
         {% if page_obj.has_previous %}
                 <a href="?page={{page_obj.previous_page_number}}">
-                    이전
+                    <i class="fas fa-arrow-left fa-lg"></i>
                 </a>
             {% endif %}
 
-            <span>{{page_obj.number}} of {{page_obj.paginator.num_pages}}</span>
+            <span class="mx-3 font-medium text-lg">{{page_obj.number}} of {{page_obj.paginator.num_pages}}</span>
 
             {% if page_obj.has_next %}
                 <a href="?page={{page_obj.next_page_number}}">
-                    다음
+                    <i class="fas fa-arrow-right fa-lg"></i>
                 </a>
             {% endif %}
-    </h5>
+    </div>
 
 {% endblock content %}

@@ -10,7 +10,7 @@
         <div class="infinite-container">
             {% for board in object_list %}
             <div class="infinite-item">
-                {% include 'partials/board_card.html' %}
+                {% include 'partials/board_card.html' with board=board %}
             </div>
             {% endfor %}
             </div>
@@ -36,6 +36,12 @@
             }
         });
     </script>
+    <script>
+        $('.btn_toggle').click(function (e) {
+          var id = $(e.currentTarget).data('id')
+          $('#til'+id).toggle()
+        });
+      </script>
     
 
 {% endblock content %}

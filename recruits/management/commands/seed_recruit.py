@@ -1,5 +1,4 @@
 from django.core.management.base import BaseCommand
-from django.contrib.admin.utils import flatten
 from django_seed import Seed
 from users import models as user_models
 from recruits import models as recruit_models
@@ -26,9 +25,9 @@ class Command(BaseCommand):
             recruit_models.Recruit,
             number,
             {
-                "name": lambda x: seeder.faker.name(),
+                "title": lambda x: seeder.faker.name(),
                 "host": lambda x: random.choice(all_users),
-                "enterprise": lambda x: seeder.faker.name(),
+                "company": lambda x: seeder.faker.name(),
             },
         )
         seeder.execute()

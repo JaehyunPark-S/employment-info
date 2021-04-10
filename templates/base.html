@@ -21,7 +21,7 @@
       </a>
       {% block search-bar %}
       <form method="get" action="{% url "recruits:search" %}" class="w-9/12 flex items-center">
-        <input class="search-box border px-3 w-full text-sm font-bold placeholder-gray-600 py-1 rounded-sm shadow-md hover:shadow-lg mt-3" value="{{title}}" name="q" id="tags" placeholder="검색" />
+        <input class="search-box border px-3 w-full text-sm font-bold placeholder-gray-600 py-1 rounded-sm shadow-md hover:shadow-lg" value="{{title}}" name="q" id="tags" placeholder="검색" />
       </form>
       {% endblock search-bar %}
       </div>
@@ -43,7 +43,5 @@
         });
       });
       </script>
-      
-
   </body>
 </html>

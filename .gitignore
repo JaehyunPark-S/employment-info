@@ -142,3 +142,4 @@ cython_debug/
 
 uploads/
 node_modules/
+.output.dot

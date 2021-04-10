@@ -9,6 +9,9 @@ pillow = "*"
 django-seed = "*"
 django-dotenv = "*"
 requests = "*"
+django-extensions = "*"
+graphviz = "*"
+pandas = "*"
 
 [dev-packages]
 

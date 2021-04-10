@@ -14,14 +14,8 @@
     <div><span class="text-4xl font-bold text-green-400">PJH Recruit</span></div>
 </div>
 <div class="container lg:w-5/12 md:w-1/2 xl:w-1/4 mx-auto my-10 flex flex-col items-center border p-6 shadow-lg">
-    <form method="POST" action="{% url "users:signup" %}">
-        {% csrf_token %}
-        {{form.first_name}}
-        {{form.email}}
-        {{form.password}}
-        {{form.password1}}
-        <button class="btn border border-green-400 bg-green-400 text-white">회원가입</button>
-    </form>
+
+    {% include "mixins/auth/auth_form.html" with form=form cta="회원가입" %}
     {% include 'partials/social_login.html' %}
 
     <div class="mt-4">
