@@ -16,8 +16,30 @@
     @apply w-full text-center rounded-sm py-1.5 font-bold;
 }
 
-input {
+.btn-link {
+    @apply w-full text-center py-3 rounded-lg font-bold text-white bg-green-400;
+}
+
+input,
+textarea,
+select {
     @apply w-full rounded-sm py-1.5 font-medium text-left border border-gray-400 px-3 focus:outline-none focus:border-gray-700;
+}
+
+textarea {
+    resize: none;
+    height: 100px;
+}
+
+select#id_gender{
+    @apply bg-white;
+}
+
+select#id_att_field{
+    @apply h-40;
+}
+select#id_att_language{
+    @apply h-40;
 }
 
 form {
@@ -31,6 +53,45 @@ form {
                 }
             }
         } 
+    }
+}
+
+input[type="file"] {
+    @apply bg-gray-400;
+}
+
+@keyframes messageFadeIn{
+    0%{
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    5%{
+        opacity: 1;
+        transform: translateY(50px);
+    }
+    95%{
+        opacity: 1;
+        transform: translateY(50px);
+    }
+    100%{
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+}
+
+.message {
+    animation: messageFadeIn 5s ease-in-out forwards;
+    &.error{
+        @apply bg-red-600;
+    }
+    &.info{
+        @apply bg-blue-500;
+    }
+    &.success{
+        @apply bg-green-500;
+    }
+    &.warning{
+        @apply bg-yellow-500;
     }
 }
 

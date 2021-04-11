@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+
+{% block page_title %}
+    {{user_obj.first_name}}의 프로필
+{% endblock page_title %}
+    
+{% block content %}
+    <div class="container lg:w-5/12 md:w-1/2 xl:w-1/4 mx-auto my-10 flex flex-col items-center border p-6 shadow-lg">
+        {% if user == user_obj %}
+            <a href="{% url 'users:avatar' %}">{% include "mixins/user_avatar.html" with user=user_obj h_and_w='w-12 h-12' text='text-2xl' %}</a>
+        {% else %}
+            {% include "mixins/user_avatar.html" with user=user_obj h_and_w='w-12 h-12' text='text-2xl' %}
+        {% endif %}
+        
+        <div class="flex items-center mb-2">
+            <span class="text-3xl mt-1">{{user_obj.first_name.upper}}</span>
+        </div>
+        <span class="text-lg mb-5 text-center">{{user_obj.bio}}</span>
+
+        
+        {% if user == user_obj %}
+            <a href="{% url 'users:update' %}" class="btn border border-green-400 bg-green-400 text-white">프로필 수정</a>
+        {% endif %}
+    </div>
+    
+{% endblock content %}
+
+<!-- <div class="flex justify-between">
+    <div class="container pb-10 lg:w-5/12 md:w-1/2 xl:w-3/7 border rounded-xl mb-10 ml-24">
+        <h3 class="text-center font-medium text-xl pt-2 text-gray-500">팔로워{{user_obj.followers.count}}</h3>
+        <div class="flex mx-5">
+            
+            
+            {% for follower in user_obj.followers.all %}
+                {% include "mixins/profile_card.html" with user=follower %}
+            {% endfor %}
+                
+                
+        </div>
+    </div>
+
+    <div class="container pb-10 lg:w-5/12 md:w-1/2 xl:w-w-3/7 border rounded-xl mb-10 mr-24">
+        <h3 class="text-center font-medium text-xl pt-2 text-gray-500">팔로잉</h3>
+        <div class="flex mx-5">
+            
+            
+            {% for following in user_obj.followings.all %}
+            {% include "mixins/profile_card.html" with user=following %}
+            {% endfor %}
+                
+                
+        </div>
+    </div>
+</div> -->
+    

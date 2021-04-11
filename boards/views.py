@@ -1,16 +1,17 @@
 from django.views.generic import ListView
 from django.shortcuts import render
 from . import models
+from users import mixins as user_mixins
 
 
-class HomeView(ListView):
+class HomeView(user_mixins.LoggedInOnlyView, ListView):
 
     """ HomeView Definition """
 
     model = models.Board
     template_name = "board_list.html"
     paginate_by = 10
-    ordering = "created"
+    ordering = "-created"
 
 
 def search(request):
