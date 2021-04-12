@@ -39,6 +39,19 @@ class AttentionLanguage(AbstractItem):
         verbose_name = "Attention Language"
 
 
+class FollowRelation(models.Model):
+
+    """ Follow Definition """
+
+    follower = models.OneToOneField(
+        "User", related_name="follower", on_delete=models.CASCADE
+    )
+    following = models.ManyToManyField("User", related_name="following", blank=True)
+
+    class Meta:
+        verbose_name = "Follow"
+
+
 class User(AbstractUser):
 
     """ Custom User Moodel """
@@ -78,8 +91,10 @@ class User(AbstractUser):
     att_language = models.ManyToManyField(
         "AttentionLanguage", related_name="users", blank=True
     )
-    followers = models.ManyToManyField("self", related_name="users", blank=True)
     followings = models.ManyToManyField("self", related_name="users", blank=True)
+    like_boards = models.ManyToManyField(
+        "boards.Board", related_name="users", blank=True
+    )
 
     def get_absolute_url(self):
         return reverse("users:profile", kwargs={"pk": self.pk})

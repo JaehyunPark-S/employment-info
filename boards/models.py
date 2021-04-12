@@ -6,12 +6,11 @@ class Board(core_models.TimeStampedModel):
 
     """ Room Model Definition" """
 
-    name = models.CharField(max_length=140, null=True)
     description = models.TextField()
     host = models.ForeignKey(
         "users.User", related_name="board", on_delete=models.CASCADE
     )
-    recommended = models.IntegerField()
+    like_count = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.name
+        return self.host.email

@@ -3,9 +3,17 @@
     <div>
       {% include "mixins/user_avatar.html" with user=board.host h_and_w='w-10 h-10' text='text-xl' %}
     </div>
-    <div class="flex flex-col ml-5 w-full">
+    <div class="flex flex-col ml-3 w-full">
       <div class="flex justify-between">
-      <span class="font-medium"><a href="{{board.host.get_absolute_url}}">{{board.host}}</a> <a href="#" class="text-blue-500 hover:text-blue-600 text-sm">팔로우</a></span>
+      <span class="font-medium"><a href="{{board.host.get_absolute_url}}">{{board.host}}</a>
+    
+        {% if board.host in user.followings.all %}
+        <a href="{% url 'users:delete-follow' pk=board.host.pk %}" class="text-blue-400 hover:text-blue-600 text-sm">언팔로우</a>  
+        {% else %}
+        <a href="{% url 'users:add-follow' pk=board.host.pk %}" class="text-blue-400 hover:text-blue-600 text-sm">팔로우</a>
+        {% endif %}
+
+      </span>
       <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
         <div class="flex justify-center">
@@ -25,7 +33,7 @@
           </div>
         </div>
       </div>
-      <span class="text-xs font-light text-gray-600 -mt-2">팔로워 {{board.host.followers.count}}</span>
+      <span class="text-xs font-light text-gray-600 -mt-2">팔로워 {{board.host.follower.count}}</span>
     </div>
   </div>
     
@@ -35,7 +43,7 @@
         </p>
     </div>
     <div class="border-b mb-2">
-      <a href="#"><i class="far fa-thumbs-up text-blue-500 mb-2 mx-1.5 hover:text-blue-600"></i></a>  <span class="text-gray-600">{{board.recommended}}</span>
+      <a href="{% url 'boards:board-like' pk=board.pk %}"><i class="far fa-thumbs-up text-blue-500 mb-2 mx-1.5 hover:text-blue-600"></i></a>  <span class="text-gray-600">{{board.like_count}}</span>
     </div>
     <div>
       <button class="hover:bg-gray-200 rounded-md p-1 focus:outline-none btn_toggle" data-id="{{board.pk}}"><i class="far fa-comment-alt"></i><span class="ml-2">댓글</span></button>

@@ -1,7 +1,10 @@
 import os
+import json
 import requests
+from django.db import IntegrityError
 from django.views import View
 from django.views.generic import FormView, DetailView, UpdateView
+from django.http import JsonResponse
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, reverse
@@ -249,3 +252,53 @@ def delete_avatar(request, pk):
     user.avatar = None
     user.save()
     return redirect(reverse("users:profile", kwargs={"pk": pk}))
+
+
+def add_follow(request, pk):
+    try:
+        me = request.user
+        user = models.User.objects.get(pk=pk)
+    except models.User.DoesNotExist:
+        return redirect(reverse("core:home"))
+    try:
+        follower_user = models.FollowRelation.objects.get(follower=user)
+    except models.FollowRelation.DoesNotExist:
+        follower_user = models.FollowRelation.objects.create(follower=user)
+
+    try:
+        if user == me:
+            raise IntegrityError("잘못된 요청입니다.")
+        follower_user.following.add(me)
+        follower_user.save()
+        me.followings.add(user)
+        me.save()
+    except IntegrityError as e:
+        messages.error(request, e)
+        return redirect(reverse("core:home"))
+
+    return redirect(reverse("core:home"))
+
+
+def delete_follow(request, pk):
+    try:
+        me = request.user
+        user = models.User.objects.get(pk=pk)
+    except models.User.DoesNotExist:
+        return redirect(reverse("core:home"))
+    try:
+        follower_user = models.FollowRelation.objects.get(follower=user)
+    except models.FollowRelation.DoesNotExist:
+        follower_user = models.FollowRelation.objects.create(follower=user)
+
+    try:
+        if user == me:
+            raise IntegrityError("잘못된 요청입니다.")
+        follower_user.following.remove(me)
+        follower_user.save()
+        me.followings.remove(user)
+        me.save()
+    except IntegrityError as e:
+        messages.error(request, e)
+        return redirect(reverse("core:home"))
+
+    return redirect(reverse("core:home"))

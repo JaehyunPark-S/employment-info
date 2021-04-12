@@ -16,6 +16,17 @@ class ItemAdmin(admin.ModelAdmin):
     pass
 
 
+@admin.register(models.FollowRelation)
+class FollowRelationAdmin(admin.ModelAdmin):
+    list_display = (
+        "follower",
+        "count_follower",
+    )
+
+    def count_follower(self, obj):
+        return obj.following.count()
+
+
 @admin.register(models.User)
 class CustomUserAdmin(UserAdmin):
 
@@ -31,9 +42,8 @@ class CustomUserAdmin(UserAdmin):
                     "bio",
                     "att_field",
                     "att_language",
-                    "followers",
-                    "followings",
                     "login_method",
+                    "followings",
                 )
             },
         ),
@@ -45,8 +55,6 @@ class CustomUserAdmin(UserAdmin):
         "email",
         "count_att_field",
         "count_att_language",
-        "count_followers",
-        "count_followings",
         "email_verified",
         "login_method",
     )
@@ -54,7 +62,6 @@ class CustomUserAdmin(UserAdmin):
     filter_horizontal = (
         "att_field",
         "att_language",
-        "followers",
         "followings",
     )
 
@@ -63,9 +70,3 @@ class CustomUserAdmin(UserAdmin):
 
     def count_att_language(self, obj):
         return obj.att_language.count()
-
-    def count_followers(self, obj):
-        return obj.followers.count()
-
-    def count_followings(self, obj):
-        return obj.followings.count()

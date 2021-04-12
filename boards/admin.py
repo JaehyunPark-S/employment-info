@@ -8,9 +8,8 @@ class BoardAdmin(admin.ModelAdmin):
     """ Board Admin Definition """
 
     list_display = (
-        "name",
         "host",
-        "recommended",
+        "like_count",
     )
 
     raw_id_fields = ("host",)

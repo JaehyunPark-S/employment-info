@@ -3,4 +3,6 @@ from . import views
 
 app_name = "boards"
 
-urlpatterns = []
+urlpatterns = [
+    path("board-like/<int:pk>/", views.board_like, name="board-like"),
+]
