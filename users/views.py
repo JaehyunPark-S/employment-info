@@ -7,7 +7,9 @@ from django.views.generic import FormView, DetailView, UpdateView
 from django.http import JsonResponse
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.http import HttpResponse
+from django.views.decorators.http import require_POST
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
@@ -254,7 +256,44 @@ def delete_avatar(request, pk):
     return redirect(reverse("users:profile", kwargs={"pk": pk}))
 
 
-def add_follow(request, pk):
+# Django Follow
+# def follow(request, pk):
+#     try:
+#         me = request.user
+#         user = models.User.objects.get(pk=pk)
+#     except models.User.DoesNotExist:
+#         return redirect(reverse("core:home"))
+#     try:
+#         follower_user = models.FollowRelation.objects.get(follower=user)
+#     except models.FollowRelation.DoesNotExist:
+#         follower_user = models.FollowRelation.objects.create(follower=user)
+
+#     try:
+#         if user == me:
+#             raise IntegrityError("잘못된 요청입니다.")
+#         if me in follower_user.following.all():
+#             follower_user.following.remove(me)
+#             # me.followings.remove(user)
+#             user.followers.remove(me)
+#         else:
+#             print(follower_user.follower)
+#             print(me)
+#             follower_user.following.add(me)
+#             # me.followings.add(user)
+#             user.followers.add(me)
+#         me.save()
+#         user.save()
+#         follower_user.save()
+#     except IntegrityError as e:
+#         messages.error(request, e)
+#         return redirect(reverse("core:home"))
+
+#     return redirect(reverse("core:home"))
+
+
+@require_POST
+def follow(request):
+    pk = request.POST.get("pk", None)
     try:
         me = request.user
         user = models.User.objects.get(pk=pk)
@@ -264,41 +303,26 @@ def add_follow(request, pk):
         follower_user = models.FollowRelation.objects.get(follower=user)
     except models.FollowRelation.DoesNotExist:
         follower_user = models.FollowRelation.objects.create(follower=user)
-
     try:
         if user == me:
             raise IntegrityError("잘못된 요청입니다.")
-        follower_user.following.add(me)
-        follower_user.save()
-        me.followings.add(user)
+        if me in follower_user.following.all():
+            follower_user.following.remove(me)
+            # me.followings.remove(user)
+            me.followings.remove(user)
+            message = "Follow"
+        else:
+            follower_user.following.add(me)
+            # me.followings.add(user)
+            me.followings.add(user)
+            message = "Unfollow"
         me.save()
+        user.save()
+        follower_user.save()
+        follow_count = follower_user.following.count()
     except IntegrityError as e:
         messages.error(request, e)
         return redirect(reverse("core:home"))
 
-    return redirect(reverse("core:home"))
-
-
-def delete_follow(request, pk):
-    try:
-        me = request.user
-        user = models.User.objects.get(pk=pk)
-    except models.User.DoesNotExist:
-        return redirect(reverse("core:home"))
-    try:
-        follower_user = models.FollowRelation.objects.get(follower=user)
-    except models.FollowRelation.DoesNotExist:
-        follower_user = models.FollowRelation.objects.create(follower=user)
-
-    try:
-        if user == me:
-            raise IntegrityError("잘못된 요청입니다.")
-        follower_user.following.remove(me)
-        follower_user.save()
-        me.followings.remove(user)
-        me.save()
-    except IntegrityError as e:
-        messages.error(request, e)
-        return redirect(reverse("core:home"))
-
-    return redirect(reverse("core:home"))
+    context = {"follow_count": follow_count, "message": message}
+    return HttpResponse(json.dumps(context), content_type="application/json")

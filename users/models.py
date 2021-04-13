@@ -91,7 +91,7 @@ class User(AbstractUser):
     att_language = models.ManyToManyField(
         "AttentionLanguage", related_name="users", blank=True
     )
-    followings = models.ManyToManyField("self", related_name="users", blank=True)
+    followings = models.ManyToManyField("users.User", related_name="users", blank=True)
     like_boards = models.ManyToManyField(
         "boards.Board", related_name="users", blank=True
     )

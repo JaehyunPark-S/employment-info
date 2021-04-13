@@ -6,13 +6,17 @@
     <div class="flex flex-col ml-3 w-full">
       <div class="flex justify-between">
       <span class="font-medium"><a href="{{board.host.get_absolute_url}}">{{board.host}}</a>
-    
-        {% if board.host in user.followings.all %}
-        <a href="{% url 'users:delete-follow' pk=board.host.pk %}" class="text-blue-400 hover:text-blue-600 text-sm">언팔로우</a>  
-        {% else %}
-        <a href="{% url 'users:add-follow' pk=board.host.pk %}" class="text-blue-400 hover:text-blue-600 text-sm">팔로우</a>
-        {% endif %}
-
+  
+        <a class="text-green-400 hover:text-green-600 text-sm btn_follow cursor-pointer" name="{{board.host.pk}}" type="button">
+          {% if board.host in user.followings.all %}
+            <span id="label-{{board.host.pk}}">Unfollow</span>
+          {% elif user == board.host%}
+            <span></span>
+          {% else %}
+            <span id="label-{{board.host.pk}}">Follow</span>
+          {% endif %}
+        </a>
+        
       </span>
       <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
@@ -33,7 +37,7 @@
           </div>
         </div>
       </div>
-      <span class="text-xs font-light text-gray-600 -mt-2">팔로워 {{board.host.follower.count}}</span>
+      <span class="text-xs font-light text-gray-600 -mt-2" id="follow-count-{{board.host.pk}}">팔로워 {{board.host.follower.following.count}}</span>
     </div>
   </div>
     
@@ -43,7 +47,14 @@
         </p>
     </div>
     <div class="border-b mb-2">
-      <a href="{% url 'boards:board-like' pk=board.pk %}"><i class="far fa-thumbs-up text-blue-500 mb-2 mx-1.5 hover:text-blue-600"></i></a>  <span class="text-gray-600">{{board.like_count}}</span>
+      <a class="btn_like cursor-pointer" name="{{board.pk}}" type="button">        
+        {% if board in user.like_boards.all %}
+        <span id="icon-{{board.pk}}"><i class="fas fa-heart mb-2 mx-1.5 text-red-400"></i></span>
+        {% else %}
+        <span id="icon-{{board.pk}}"><i class="far fa-heart mb-2 mx-1.5 text-red-400"></i></span>
+        {% endif %}
+        <span id="count-{{board.pk}}" class="text-gray-600">{{board.like_count}}</span>
+      </a>
     </div>
     <div>
       <button class="hover:bg-gray-200 rounded-md p-1 focus:outline-none btn_toggle" data-id="{{board.pk}}"><i class="far fa-comment-alt"></i><span class="ml-2">댓글</span></button>
@@ -61,8 +72,7 @@
                 <span class="text-sm">{{comment.comment}}</span>
             </div>
         </div>
-        
     </div>   
       {% endfor %}
     </div>
-</div> 
+</div>

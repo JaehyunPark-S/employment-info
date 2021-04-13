@@ -44,6 +44,7 @@ class CustomUserAdmin(UserAdmin):
                     "att_language",
                     "login_method",
                     "followings",
+                    "like_boards",
                 )
             },
         ),
@@ -57,6 +58,7 @@ class CustomUserAdmin(UserAdmin):
         "count_att_language",
         "email_verified",
         "login_method",
+        "count_followings",
     )
 
     filter_horizontal = (
@@ -70,3 +72,6 @@ class CustomUserAdmin(UserAdmin):
 
     def count_att_language(self, obj):
         return obj.att_language.count()
+
+    def count_followings(self, obj):
+        return obj.followings.count()
