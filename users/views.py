@@ -14,6 +14,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from . import forms, models, mixins
+from boards import models as board_models
 
 
 class LoginView(mixins.LoggedOutOnlyView, View):
@@ -296,10 +297,8 @@ def follow(request):
     pk = request.POST.get("pk", None)
     try:
         me = request.user
-        user = models.User.objects.get(pk=pk)
-        print(user.board.pk)
-        for i in user.board.all():
-            print(i.pk)
+        board = board_models.Board.objects.get(pk=pk)
+        user = board.host
     except models.User.DoesNotExist:
         return redirect(reverse("core:home"))
     try:
@@ -313,12 +312,12 @@ def follow(request):
             follower_user.following.remove(me)
             # me.followings.remove(user)
             me.followings.remove(user)
-            message = "Follow"
+            message = "팔로우"
         else:
             follower_user.following.add(me)
             # me.followings.add(user)
             me.followings.add(user)
-            message = "Unfollow"
+            message = "팔로우 취소"
         me.save()
         user.save()
         follower_user.save()

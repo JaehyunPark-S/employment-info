@@ -7,13 +7,13 @@
       <div class="flex justify-between">
       <span class="font-medium"><a href="{{board.host.get_absolute_url}}">{{board.host}}</a>
   
-        <a class="text-green-400 hover:text-green-600 text-sm btn_follow cursor-pointer" name="{{board.host.pk}}" type="button">
+        <a class="text-green-400 hover:text-green-600 font-bold text-sm btn_follow cursor-pointer ml-1" name="{{board.pk}}" type="button">
           {% if board.host in user.followings.all %}
-            <span id="label-{{board.host.pk}}">Unfollow</span>
+            <span id="label-{{board.pk}}">팔로우 취소</span>
           {% elif user == board.host%}
             <span></span>
           {% else %}
-            <span id="label-{{board.host.pk}}">Follow</span>
+            <span id="label-{{board.pk}}">팔로우</span>
           {% endif %}
         </a>
         

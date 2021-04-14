@@ -26,7 +26,6 @@ def search(request):
 @require_POST
 def board_like(request):
     pk = request.POST.get("pk", None)
-    print(pk)
     board = get_object_or_404(models.Board, pk=pk)
     user = request.user
     me = user_model.User.objects.get(pk=user.pk)
