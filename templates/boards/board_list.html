@@ -35,18 +35,27 @@
 
             },
             onAfterPageLoad: function($items) {
-                
+                $items.each(function() {
+                    $(this).find('.btn_toggle').on('click', buttonToggleClick);
+                })
+
+                $items.each(function() {
+                    console.log('like')
+                    $(this).find('.btn_like').on('click', buttonLikeClick);
+                })
+
+                $items.each(function() {
+                    $(this).find('.btn_follow').on('click', buttonFollowClick);
+                })
             }
         });
 
-        // 댓글창 열고 닫기
-        $('.btn_toggle').click(function (e) {
-          var id = $(e.currentTarget).data('id')
-          $('#til'+id).toggle()
-        });
-      
-        // 게시글 좋아요 
-        $(".btn_like").click(function () {
+        var buttonToggleClick = function(event){
+            var id = $(event.currentTarget).data('id')
+            $('#til'+id).toggle()
+        }
+
+        var buttonLikeClick = function(event) {
             var pk = $(this).attr('name')
             $.ajax({
                 type: "POST",
@@ -62,10 +71,9 @@
                     window.location.replace("/")
                 },
             });
-        })
+        }
 
-        // 팔로우 기능
-        $(".btn_follow").click(function () {
+        var buttonFollowClick = function(event) {
             var pk = $(this).attr('name')
             $.ajax({
                 type: "POST",
@@ -81,6 +89,63 @@
                     window.location.replace("/")
                 },
             });
+        }
+        // 댓글창 열고 닫기
+        $(document).ready(function() {
+            $('.btn_toggle').on('click', buttonToggleClick)
         })
+        
+      
+        // 게시글 좋아요 
+        $(document).ready(function() {
+            $('.btn_like').on('click', buttonLikeClick)
+        })
+
+        $(document).ready(function() {
+            $('.btn_follow').on('click', buttonFollowClick)
+        })
+
+        // 팔로우 기능
+        
     </script>
 {% endblock content %}
+<!-- $(".btn_like").click(function () {
+    var pk = $(this).attr('name')
+    $.ajax({
+        type: "POST",
+        url: "{% url 'boards:board-like' %}", 
+        data: { 'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}' },
+        dataType: "json",
+        success: function (response) {
+            $("#count-" + pk).html(response.like_count);
+            $("#icon-" + pk).html(response.icon)
+        },
+        error: function (request, status, error) {
+            alert("잘못된 경로입니다.")
+            window.location.replace("/")
+        },
+    });
+}) -->
+
+<!-- $('.btn_toggle').click(function (e) {
+    var id = $(e.currentTarget).data('id')
+    $('#til'+id).toggle()
+  }); -->
+  
+  <!-- $(".btn_follow").click(function () {
+    var pk = $(this).attr('name')
+    $.ajax({
+        type: "POST",
+        url: "{% url 'users:follow' %}",
+        data: { 'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}' },
+        dataType: "json",
+        success: function (response) {
+            $("#label-" + pk).html(response.message)
+            $("#follow-count-" + pk).html("팔로워 " + response.follow_count)
+        },
+        error: function (request, status, error) {
+            alert("잘못된 경로입니다.")
+            window.location.replace("/")
+        },
+    });
+}) -->

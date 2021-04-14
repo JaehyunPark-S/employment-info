@@ -297,6 +297,9 @@ def follow(request):
     try:
         me = request.user
         user = models.User.objects.get(pk=pk)
+        print(user.board.pk)
+        for i in user.board.all():
+            print(i.pk)
     except models.User.DoesNotExist:
         return redirect(reverse("core:home"))
     try:

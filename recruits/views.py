@@ -4,31 +4,32 @@ from django.views.generic import ListView
 from django.shortcuts import render, redirect, reverse
 from . import models
 
-# from users import models as user_models
+from users import models as user_models
 
 
-# import pandas as pd
-# import csv
+import pandas as pd
+import csv
 
-# user = user_models.User.objects.get(username="jaehyun@jj.hh")
-# with open("recruits/jobs.csv", "r") as f:
-#     dr = csv.DictReader(f)
-#     s = pd.DataFrame(dr)
-# ss = []
-# for i in range(len(s)):
-#     if s["image"][i] == "":
-#         s["image"][i] = "../static/img/company.png"
-#     st = (s["title"][i], s["company"][i], s["location"][i], s["link"][i], s["image"][i])
-#     ss.append(st)
-# for i in range(len(s)):
-#     models.Recruit.objects.create(
-#         title=ss[i][0],
-#         company=ss[i][1],
-#         location=ss[i][2],
-#         link=ss[i][3],
-#         image=ss[i][4],
-#         host=user,
-#     )
+user = user_models.User.objects.get(username="jaehyun@jj.hh")
+with open("recruits/jobs.csv", "r") as f:
+    dr = csv.DictReader(f)
+    s = pd.DataFrame(dr)
+ss = []
+for i in range(len(s)):
+    if s["image"][i] == "":
+        s["image"][i] = "../static/img/company.png"
+    st = (s["title"][i], s["company"][i], s["location"][i], s["link"][i], s["image"][i])
+    ss.append(st)
+
+for i in range(len(s)):
+    models.Recruit.objects.create(
+        title=ss[i][0],
+        company=ss[i][1],
+        location=ss[i][2],
+        link=ss[i][3],
+        image=ss[i][4],
+        host=user,
+    )
 
 
 class RecruitView(ListView):
