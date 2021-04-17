@@ -8,46 +8,81 @@
 {% load static %}
     <div class="flex justify-between">
 
-    <div class="bg-white border w-full justify-center items-center overflow-hidden max-h-50vh h-3/5 lg:w-5/12 md:w-1/2 xl:w-1/5 rounded-lg shadow-sm  ml-28">
-        <div class="h-40">
-          <img class="h-full w-full" src="https://images.unsplash.com/photo-1531685250784-7569952593d2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80">
+        <div class="bg-white border w-full justify-center items-center overflow-hidden max-h-50vh h-3/5 lg:w-5/12 md:w-1/2 xl:w-1/5 rounded-lg shadow-sm  ml-28">
+                <div class="h-40">
+                <img class="h-full w-full" src="https://images.unsplash.com/photo-1531685250784-7569952593d2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80">
+                </div>
+                <div class="relative mx-auto h-24 w-24 -my-12">
+                    <a href="{{user.get_absolute_url}}" class="object-cover w-full h-full items-center text-center">
+                        {% include "mixins/user_avatar.html" with user=user h_and_w='w-24 h-24' text='text-5xl' %}
+                    </a>
+                </div>
+                <div class="mt-16 text-center">
+                <h1 class="text-lg text-center font-semibold">
+                    {{user.first_name}} 
+                </h1>
+                <a href="{% url 'users:update' %}">
+                    <p class="text-blue-400">관심 분야 및 관심 언어 등록하기</p>
+                </a>
+                </div>
+            <div class="mt-6 pt-3 flex flex-wrap mx-6 border-t mb-2">
+                
+                {% for field in user.att_language.all %}
+                <div class="text-xs mr-2 my-1 uppercase tracking-wider border px-2 text-indigo-600 border-indigo-600 hover:bg-indigo-600 hover:text-indigo-100 cursor-default">
+                    {{field}}
+                </div>
+                {% endfor %}
+            </div>
         </div>
-        <div class="relative mx-auto h-24 w-24 -my-12">
-            <a href="{{user.get_absolute_url}}" class="object-cover w-full h-full items-center text-center">
-                {% include "mixins/user_avatar.html" with user=user h_and_w='w-24 h-24' text='text-5xl' %}
-            </a>
-        </div>
-        <div class="mt-16 text-center">
-          <h1 class="text-lg text-center font-semibold">
-            {{user.first_name}} 
-          </h1>
-          <a href="{% url 'users:update' %}">
-            <p class="text-blue-400">관심 분야 및 관심 언어 등록하기</p>
-        </a>
-        </div>
-        <div class="mt-6 pt-3 flex flex-wrap mx-6 border-t mb-2">
-            
-            {% for field in user.att_language.all %}
-            <div class="text-xs mr-2 my-1 uppercase tracking-wider border px-2 text-indigo-600 border-indigo-600 hover:bg-indigo-600 hover:text-indigo-100 cursor-default">
-                {{field}}
-              </div>
-            {% endfor %}
-        </div>
-      </div>
             <div class="infinite-container lg:w-5/12 md:w-1/2 xl:w-4/12 mx-auto">
                 {% for board in object_list %}
-                <div class="infinite-item">
+                <div class="infinite-item bg-white rounded-xl">
                     {% include 'partials/board_card.html' with board=board %}
                 </div>
                 {% endfor %}
-                </div>
-                    <div class="border border-gray-300 rounded-xl max-h-75vh lg:w-5/12 md:w-1/2 xl:w-1/5 mr-28 flex flex-col items-center">
-                        <div class="mt-5">
-                            Follow
+            </div>
+            <div class=" container lg:w-5/12 md:w-1/2 xl:w-1/5 mr-28 flex flex-col">
+                <div class="text-center border rounded-xl border-gray-300 bg-white">
+                    <div class="mb-3 mt-3">
+                        <span class="font-bold border-b">{{user.first_name}}님의 팔로워</span>
+                    </div>
+                    <div class="scrollbar container w-full overflow-y-scroll" style="height: 300px;">
+                    {% for follow in user.follower.following.all %}
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex ml-5 items-center">
+                            {% include 'mixins/user_avatar.html' with user=follow h_and_w='w-6 h-6' text='text-xs' %}
+                            <a href="{{follow.get_absolute_url}}"><span class="text-lg ml-2">{{follow.first_name}}</span></a>
                         </div>
                         <div>
+                            <a href="#"><span class="mr-3 border p-1 rounded-md bg-green-400 border-green-400 text-white font-light">팔로우</span></a>
                         </div>
+                    </div>
+                    {% endfor %}
                 </div>
+                </div>
+
+                <div class="text-center border rounded-xl border-gray-300 mt-12 bg-white">
+                    <div class="mb-3 mt-3">
+                        <span class="font-bold border-b">{{user.first_name}}님이 팔로우한 사람들</span>
+                    </div>
+                    <div class="scrollbar container w-full overflow-y-scroll" style="height: 300px;">
+                    {% for follow in user.followings.all %}
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex ml-5 items-center">
+                            {% include 'mixins/user_avatar.html' with user=follow h_and_w='w-6 h-6' text='text-xs' %}
+                            <a href="{{follow.get_absolute_url}}"><span class="text-lg ml-2">{{follow.first_name}}</span></a>
+                        </div>
+                        <div>
+                            <a href="#"><span class="mr-3 border p-1 rounded-md bg-red-400 border-red-400 text-white font-light">팔로우 취소</span></a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                </div>
+                
+                
+            </div>
+            
             <h5>
                 {% if page_obj.has_next %}
                 <a class="infinite-more-link" href="?page={{page_obj.next_page_number}}"></a>

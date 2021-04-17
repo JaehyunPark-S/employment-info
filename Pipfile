@@ -12,6 +12,12 @@ requests = "*"
 django-extensions = "*"
 graphviz = "*"
 pandas = "*"
+beautifulsoup4 = "*"
+django-crontab = "*"
+redis = "*"
+django-celery-beat = "*"
+django-celery-results = "*"
+celery = "*"
 
 [dev-packages]
 

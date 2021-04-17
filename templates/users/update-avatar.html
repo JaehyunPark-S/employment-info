@@ -12,7 +12,7 @@
 {% block content %}
 <div class="container lg:w-5/12 md:w-1/2 xl:w-1/4 mx-auto my-28 flex flex-col items-center pt-24">
 </div>
-<div class="container lg:w-5/12 md:w-1/2 xl:w-1/4 mx-auto my-10 flex flex-col items-center border p-6 shadow-lg">
+<div class="container lg:w-5/12 md:w-1/2 xl:w-1/4 mx-auto my-10 flex flex-col items-center border p-6 shadow-lg bg-white rounded-lg">
             
         <form method="POST" class="w-full" enctype="multipart/form-data">
             {% csrf_token %}
@@ -29,10 +29,10 @@
                 <input type="file" name="avatar" accept="image/*" id="id_avatar" class="file-input hidden" />
             </label>
             </div>            
-            <div class="btn text-gray-400">
+            <div class="btn text-gray-600">
                 <a href="{% url 'users:delete-avatar' pk=user.pk %}">이미지 삭제</a>
             </div>
-            <button class="btn border border-green-400 bg-green-400 text-white">프로필 사진 수정</button>
+            <button class="btn border border-blue700 bg-blue-700 text-white">프로필 사진 수정</button>
         </form>
     </div>
     <div class="pb-72">

@@ -8,12 +8,12 @@
 {% load static %}
     <div class="container mx-auto w-2/6">
     {% for recruit in object_list %}
-    <div class="mb-2">
+    <div class="mb-2 bg-white border-white rounded-xl">
         <div class="flex border p-3">
-            <div>
-                <img src={{recruit.image}} width="50" height="50">
+            <div class="xl:w-12 xl:h-12 lg:w-10 lg:h-10 sm:w-8 sm:h-8 :">
+                <img src={{recruit.image}} class="w-full h-full">
             </div>
-            <div class="flex flex-col ml-5">
+            <div class="flex flex-col ml-5 xl:w-11/12 lg:w-4/5 sm:w-4/5">
                 <span class="font-bold"><a href="{{recruit.link}}">{{recruit.title}}</a></span>
                 <span>{{recruit.company}}</span>
                 <span class="text-gray-400">{{recruit.location}} </span>

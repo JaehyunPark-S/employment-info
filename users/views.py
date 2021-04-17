@@ -312,16 +312,16 @@ def follow(request):
             follower_user.following.remove(me)
             # me.followings.remove(user)
             me.followings.remove(user)
-            message = "팔로우"
+            message = '<span id="label-{{board.pk}}" class="text-blue-400 hover:text-blue-700">팔로우</span>'
         else:
             follower_user.following.add(me)
             # me.followings.add(user)
             me.followings.add(user)
-            message = "팔로우 취소"
+            message = '<span id="label-{{board.pk}}" class="text-red-400 hover:text-red-600">팔로우 취소</span>'
         me.save()
-        user.save()
         follower_user.save()
         follow_count = follower_user.following.count()
+        print(follow_count)
     except IntegrityError as e:
         messages.error(request, e)
         return redirect(reverse("core:home"))
