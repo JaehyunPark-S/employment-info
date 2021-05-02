@@ -1,7 +1,6 @@
 import json
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, FormView, UpdateView
-from bootstrap_modal_forms.generic import BSModalCreateView
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.http import HttpResponse, Http404
 from django.views.decorators.http import require_POST

@@ -33,17 +33,27 @@
                 <div x-show="dropdownOpen" class="absolute right-0 w-24 mt-2 bg-white rounded-md overflow-hidden shadow-xl z-20">
                   
                   <a href="#board_update" rel="modal:open" @click="dropdownOpen = !dropdownOpen" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">수정</a>
-                  <a href="{% url 'boards:board-delete' board.pk %}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">삭제</a>
+                  <a href="{% url 'boards:board-delete' board.pk %}" @click="dropdownOpen = !dropdownOpen" onclick="return confirm('정말 삭제하시겠습니까?')" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">삭제</a>
                   <div id="board_update" class="modal">
                     <div class="flex justify-between items-center border-b p-2 text-xl">
                         <h6 class="text-xl font-bold">글 수정</h6>
+                    </div>
+                    <div class="flex mb-2 mt-2 items-center">
+                      <div>
+                        {% include "mixins/user_avatar.html" with user=board.host h_and_w='w-8 h-8' text='text-lg' %}
+                      </div>
+                      <div class="flex flex-col ml-3 w-full">
+                        <div class="flex justify-between items-center">
+                        <span class="font-semibold"><a href="{{board.host.get_absolute_url}}">{{board.host.first_name}}</a></span>
+                        </div>
+                      </div>
                     </div>
                     <form method="POST" action="{% url 'boards:board-update'%}">
                         {% csrf_token %}
                         <p><textarea name="description">{{board.description}}</textarea></p>
                         <input type="text" class="hidden" name="pk" value="{{board.pk}}">
                         <div class="flex justify-end">
-                          <button class="mr-5 px-3 py-1 font-bold text-lg hover:text-blue-500 focus:outline-none">작성</button>
+                          <button class="mr-5 px-3 py-1 font-bold text-lg hover:text-blue-500 focus:outline-none">수정</button>
                           <a href="#" rel="modal:close" class="px-3 py-1 font-bold text-lg hover:text-red-500 focus:outline-none">닫기</a>
                         </div>
                     </form>
@@ -77,7 +87,10 @@
       <button class="hover:bg-gray-200 rounded-md p-1 focus:outline-none btn_toggle" data-id="{{board.pk}}"><i class="far fa-comment-alt"></i><span class="ml-2">댓글</span></button>
     </div>
     <div class="hidden" id="til{{board.pk}}">
-      <div>Here is input comment</div>
+      <form method="POST" action="{% url 'comments:comment-write' board.pk %}" class="pt-2 pb-1">
+        {% csrf_token %}
+        <input class="border rounded-lg" type="text" placeholder="댓글 남기기" name="comment">
+    </form>
       {% for comment in board.comment.all %}
       <div class="border-section mb-2 mt-3">
         <div class="mb-3 flex">
@@ -85,12 +98,23 @@
                 {% include "mixins/user_avatar.html" with user=comment.user h_and_w='w-7 h-7' text='text-lg' %}
             </div>
             <div class="flex flex-col ml-2 bg-gray-100 w-full p-2 rounded-md">
-                <span class="text-xs">{{comment.user.first_name}}</span>
+              <div class="flex justify-between items-center -mt-1">
+                  <div>
+                    <span class="text-xs">{{comment.user.first_name}}</span>
+                  </div>
+                  {% if user == comment.user %}
+                    <div>
+                      <a href="#"><span class="text-xs hover:text-blue-500 mr-2">수정</span></a>
+                      <a href="{% url 'comments:comment-delete' comment.pk %}"><span class="text-xs hover:text-red-600 mr-1">삭제</span></a>
+                    </div>
+                  {% endif %}
+              </div>
                 <span class="text-xs text-gray-500">{{comment.created|date:'Y년 m월 d일'}}</span>
                 <span class="text-sm">{{comment.comment}}</span>
             </div>
         </div>
-    </div>   
+    </div>
+    
       {% endfor %}
     </div>
 </div>

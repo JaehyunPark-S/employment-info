@@ -13,4 +13,4 @@ class Board(core_models.TimeStampedModel):
     like_count = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.host.email + " - " + self.description[:5]
+        return self.description[:5]
