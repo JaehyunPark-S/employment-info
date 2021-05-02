@@ -18,6 +18,8 @@ redis = "*"
 django-celery-beat = "*"
 django-celery-results = "*"
 celery = "*"
+django-bootstrap-modal-forms = "*"
+django-widget-tweaks = "*"
 
 [dev-packages]
 

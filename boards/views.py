@@ -1,9 +1,13 @@
 import json
-from django.views.generic import ListView
+from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView, FormView, UpdateView
+from bootstrap_modal_forms.generic import BSModalCreateView
 from django.shortcuts import render, get_object_or_404, reverse, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.views.decorators.http import require_POST
-from . import models
+from django.urls import reverse_lazy
+from django.contrib import messages
+from . import models, forms
 from users import mixins as user_mixins
 from users import models as user_model
 
@@ -18,11 +22,81 @@ class HomeView(user_mixins.LoggedInOnlyView, ListView):
     ordering = "-created"
 
 
+class BoardCreatView(FormView):
+    template_name = "boards/board_create.html"
+    form_class = forms.BoardCreateForm
+    success_url = reverse_lazy("core:home")
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields["description"].label = "글 내용"
+        return form
+
+
+class UpdateBoardView(user_mixins.LoggedInOnlyView, UpdateView):
+    model = models.Board
+    template_name = "boards/board_update.html"
+    fields = ("description",)
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields["description"].label = "글 내용"
+        return form
+
+    def get_object(self, queryset=None):
+        board = super().get_object(queryset=queryset)
+        if board.host.pk != self.request.user.pk:
+            raise Http404()
+        return board
+
+
+@login_required
+def board_create(request):
+    description = request.POST.get("description")
+    user = request.user
+    board = models.Board.objects.create(description=description, host=user)
+    board.save()
+    messages.success(request, "게시글이 작성되었습니다.")
+    return redirect(reverse("core:home"))
+
+
+@login_required
+def board_update(request):
+    description = request.POST.get("description")
+    pk = request.POST.get("pk")
+    board = models.Board.objects.get(pk=pk)
+    user = request.user
+    try:
+        if user.pk != board.host.pk:
+            raise Http404()
+        board.description = description
+        board.save()
+        return redirect(reverse("core:home"))
+    except models.Board.DoesNotExist:
+        return redirect(reverse("core:home"))
+
+
+@login_required
+def board_delete(request, pk):
+    user = request.user
+    try:
+        board = models.Board.objects.get(pk=pk)
+        if board.host.pk != user.pk:
+            messages.error(request, "잘못된 요청입니다.")
+        else:
+            board.delete()
+            messages.success(request, "게시글이 삭제되었습니다.")
+            return redirect(reverse("core:home"))
+    except models.Board.DoesNotExist:
+        return redirect(reverse("core:home"))
+
+
 def search(request):
     host = request.GET.get("host", " ")
     return render(request, "boards/search.html", {"host": host})
 
 
+@login_required
 @require_POST
 def board_like(request):
     pk = request.POST.get("pk", None)

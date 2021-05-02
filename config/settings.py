@@ -65,6 +65,8 @@ INSTALLED_APPS = (
         "django_extensions",
         "django_celery_beat",
         "django_celery_results",
+        "bootstrap_modal_forms",
+        "widget_tweaks",
     ]
 )
 

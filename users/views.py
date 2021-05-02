@@ -321,7 +321,6 @@ def follow(request):
         me.save()
         follower_user.save()
         follow_count = follower_user.following.count()
-        print(follow_count)
     except IntegrityError as e:
         messages.error(request, e)
         return redirect(reverse("core:home"))

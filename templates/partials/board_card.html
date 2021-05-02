@@ -6,7 +6,7 @@
     </div>
     <div class="flex flex-col ml-3 w-full">
       <div class="flex justify-between items">
-      <span class="font-medium"><a href="{{board.host.get_absolute_url}}">{{board.host}}</a>
+      <span class="font-bold"><a href="{{board.host.get_absolute_url}}">{{board.host.first_name}}</a>
   
         <a class="font-bold text-sm btn_follow cursor-pointer ml-1" name="{{board.pk}}" type="button">
           {% if board.host in user.followings.all %}
@@ -31,8 +31,23 @@
                   </svg>
                 </button>
                 <div x-show="dropdownOpen" class="absolute right-0 w-24 mt-2 bg-white rounded-md overflow-hidden shadow-xl z-20">
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">수정</a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">삭제</a>
+                  
+                  <a href="#board_update" rel="modal:open" @click="dropdownOpen = !dropdownOpen" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">수정</a>
+                  <a href="{% url 'boards:board-delete' board.pk %}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">삭제</a>
+                  <div id="board_update" class="modal">
+                    <div class="flex justify-between items-center border-b p-2 text-xl">
+                        <h6 class="text-xl font-bold">글 수정</h6>
+                    </div>
+                    <form method="POST" action="{% url 'boards:board-update'%}">
+                        {% csrf_token %}
+                        <p><textarea name="description">{{board.description}}</textarea></p>
+                        <input type="text" class="hidden" name="pk" value="{{board.pk}}">
+                        <div class="flex justify-end">
+                          <button class="mr-5 px-3 py-1 font-bold text-lg hover:text-blue-500 focus:outline-none">작성</button>
+                          <a href="#" rel="modal:close" class="px-3 py-1 font-bold text-lg hover:text-red-500 focus:outline-none">닫기</a>
+                        </div>
+                    </form>
+                </div>
                 </div>
               </div>
           </div>
@@ -62,6 +77,7 @@
       <button class="hover:bg-gray-200 rounded-md p-1 focus:outline-none btn_toggle" data-id="{{board.pk}}"><i class="far fa-comment-alt"></i><span class="ml-2">댓글</span></button>
     </div>
     <div class="hidden" id="til{{board.pk}}">
+      <div>Here is input comment</div>
       {% for comment in board.comment.all %}
       <div class="border-section mb-2 mt-3">
         <div class="mb-3 flex">

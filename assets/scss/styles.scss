@@ -53,6 +53,12 @@ textarea {
     height: 100px;
 }
 
+p {
+    textarea {
+        @apply h-25vh;
+    }
+}
+
 select#id_gender{
     @apply bg-white;
 }
