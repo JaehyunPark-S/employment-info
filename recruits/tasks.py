@@ -11,4 +11,4 @@ def add(x, y):
 @shared_task
 def so_crawler():
     last_page = sc.get_last_page()
-    sc.extract_jobs(1)
+    sc.extract_jobs(3)

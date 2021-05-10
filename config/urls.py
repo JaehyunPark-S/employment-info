@@ -24,6 +24,7 @@ urlpatterns = [
     path("comments/", include("comments.urls", namespace="comments")),
     path("users/", include("users.urls", namespace="users")),
     path("recruits/", include("recruits.urls", namespace="recruits")),
+    path("lists/", include("lists.urls", namespace="lists")),
     path("admin/", admin.site.urls),
 ]
 

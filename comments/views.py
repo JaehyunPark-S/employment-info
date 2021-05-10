@@ -1,7 +1,6 @@
-from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import reverse, redirect
-from django.http import HttpResponse, Http404
+from django.http import Http404
 from django.contrib import messages
 from . import models as comment_model
 from boards import models as board_model
@@ -24,8 +23,18 @@ def comment_write(request, pk):
 
 
 @login_required
-def comment_update(request, board_pk, comment_pk):
-    pass
+def comment_update(request, comment_pk):
+    write = request.POST.get("comment")
+    user = request.user
+    comment = comment_model.Comment.objects.get(pk=comment_pk)
+    try:
+        if user.pk != comment.user.pk:
+            raise Http404()
+        comment.comment = write
+        comment.save()
+        return redirect(reverse("core:home"))
+    except comment_model.Comment.DoesNotExist:
+        return redirect(reverse("core:home"))
 
 
 @login_required

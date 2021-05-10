@@ -104,8 +104,31 @@
                   </div>
                   {% if user == comment.user %}
                     <div>
-                      <a href="#"><span class="text-xs hover:text-blue-500 mr-2">수정</span></a>
+                      <a href="#comment_update" rel="modal:open"><span class="text-xs hover:text-blue-500 mr-2">수정</span></a>
                       <a href="{% url 'comments:comment-delete' comment.pk %}"><span class="text-xs hover:text-red-600 mr-1">삭제</span></a>
+                      <div id="comment_update" class="modal">
+                        <div class="flex justify-between items-center border-b p-2 text-xl">
+                            <h6 class="text-xl font-bold">댓글 수정</h6>
+                        </div>
+                        <div class="flex mb-2 mt-2 items-center">
+                          <div>
+                            {% include "mixins/user_avatar.html" with user=board.host h_and_w='w-8 h-8' text='text-lg' %}
+                          </div>
+                          <div class="flex flex-col ml-3 w-full">
+                            <div class="flex justify-between items-center">
+                            <span class="font-semibold"><a href="{{comment.user.get_absolute_url}}">{{comment.user.first_name}}</a></span>
+                            </div>
+                          </div>
+                        </div>
+                        <form method="POST" action="{% url 'comments:comment-update' comment.pk%}">
+                            {% csrf_token %}
+                            <p><textarea class="h-16" name="comment">{{comment.comment}}</textarea></p>
+                            <div class="flex justify-end">
+                              <button class="mr-5 px-3 py-1 font-bold text-lg hover:text-blue-500 focus:outline-none">수정</button>
+                              <a href="#" rel="modal:close" class="px-3 py-1 font-bold text-lg hover:text-red-500 focus:outline-none">닫기</a>
+                            </div>
+                        </form>
+                    </div>
                     </div>
                   {% endif %}
               </div>

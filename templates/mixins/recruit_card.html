@@ -1,0 +1,25 @@
+<div class="w-1/4 mb-10 px-2 py-1 overflow-hidden bg-white border rounded-lg">
+    <a href="{{recruit.link}}">
+        <div class="flex justify-between">
+            <div class="w-12 h-12 bg-cover bg-center rounded-lg mb-2"
+                style="background-image: url({{recruit.image}});">
+            </div>
+            <div>
+                <a class="recruit_btn_like cursor-pointer" name="{{recruit.pk}}" type="button">        
+                    {% if recruit in user.list.recruits.all %}
+                        <span id="icon-{{recruit.pk}}"><i class="fas fa-heart mb-2 text-red-400"></i></span>
+                    {% else %}
+                        <span id="icon-{{recruit.pk}}"><i class="far fa-heart mb-2 text-red-400"></i></span>
+                    {% endif %}
+                  </a>
+            </div>
+        </div>
+        <div class="flex justify-between mb-2 truncate">
+            <div class="w-4/5 overflow-hidden flex flex-col">
+                <span class="text-sm text-gray-600 block truncate">{{recruit.company}}</span>
+                    <span class="text-sm text-gray-600 block truncate">{{recruit.location}}</span>
+            </div>
+        </div>
+        <span class="text-black truncate w-11/12 block">{{recruit.title}}</span>
+    </a>
+</div>

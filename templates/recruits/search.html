@@ -6,6 +6,48 @@
 
 {% block content %}
 {% load static %}
-    <h1>Search!</h1>
-
+    <div class="container mx-auto w-2/6">
+        <div class="flex flex-wrap -mx-24 mb-10">
+            {% for recruit in recruits %}
+            {% include "mixins/recruit_card.html" with recruit=recruit %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="flex items-center justify-center mx-auto container mb-7 -mt-14">
+        <h5>
+        
+            {% if page is not 1 %}
+                <a href="?q={{title}}&page={{page|add:-1}}"><i class="fas fa-arrow-left fa-lg"></i></a>    
+            {% endif %}
+                
+            <span class="mx-3 font-medium text-lg">{{page}} of {{page_count}}</span>
+            
+            {% if not page == page_count %}
+                <a href="?q={{title}}&page={{page|add:1}}"><i class="fas fa-arrow-right fa-lg"></i></a>
+            {% endif %}
+                
+        </h5>
+    </div>
+    <script type="text/javascript">
+        var recruitLikeClick = function(event) {
+            var pk = $(this).attr('name')
+            $.ajax({
+                type: "POST",
+                url: "{% url 'lists:recruit-like' %}", 
+                data: { 'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}' },
+                dataType: "json",
+                success: function (response) {
+                    $("#icon-" + pk).html(response.icon)
+                },
+                error: function (request, status, error) {
+                    alert("잘못된 경로입니다.")
+                    window.location.replace("/")
+                },
+            });
+        }
+        // 게시글 좋아요 
+        $(document).ready(function() {
+            $('.recruit_btn_like').on('click', recruitLikeClick)
+        })
+    </script>
 {% endblock content %}

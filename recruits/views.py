@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.views.generic import ListView
 from django.shortcuts import render, redirect, reverse
 from . import models, tasks
+from math import ceil
 
 # import pandas as pd
 # import csv
@@ -40,12 +41,26 @@ class RecruitView(ListView):
 
 
 def search(request):
-    title = request.GET.get("title", " ")
-    return render(request, "recruits/search.html", {"title": title})
+    page = int(request.GET.get("page", 1))
+    page = int(page or 1)
+    page_size = 20
+    limit = page_size * page
+    offset = limit - page_size
+    qs = models.Recruit.objects.all()
+    title = request.GET.get("q")
+    if title:
+        qs = qs.filter(title__contains=title)
+    page_count = qs.count() / page_size
+    qs = qs[offset:limit]
+
+    return render(
+        request,
+        "recruits/search.html",
+        {"recruits": qs, "title": title, "page": page, "page_count": ceil(page_count)},
+    )
 
 
 def autosuggest(request):
-    print(request.GET)
     query_original = request.GET.get("term")
     qs = models.Recruit.objects.filter(title__icontains=query_original)
     mylist = []

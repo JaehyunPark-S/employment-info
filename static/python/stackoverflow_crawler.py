@@ -19,7 +19,7 @@ def extract_job(html):
     try:
         image = html.find("img", {"class": "bar-sm"})["src"]
     except Exception:
-        image = "../static/img/company.png"
+        image = "/static/img/company.png"
     title = html.find("h2", {"class": "mb4"}).find("a")["title"]
     company, location = html.find("h3", {"class": "mb4"}).find_all(
         "span", recursive=False
