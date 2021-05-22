@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    Conversation
+{% endblock page_title %}
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block content %}
+     
+    <div class="container mx-auto my-10 mt-28 flex justify-between min-h-50vh">
+
+        <div class="border w-1/4 p-10 border-gray-600 bg-white max-h-48">
+            <div class="flex justify-between mt-2 items-center">
+                {% for user in conversation.participants.all  %}
+                    <div class="flex flex-col items-center">
+                        {% include "mixins/user_avatar.html" with user=user %}
+                        <span class="mt-2 text-gray-500">{{user.first_name}}</span>
+                    </div>
+                    {% if forloop.first %}
+                      <span class="font-medium text-2xl">&</span>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="flex-grow">
+        <div id="mydiv" class="mydiv scrollbar overflow-y-scroll border ml-10 p-10 flex flex-col min-h-60vh max-h-60vh border-gray-600 bg-white">
+                {% if conversation.messages.count == 0 %}
+                    no messages
+                {% else %}
+                    {% for message in conversation.messages.all  %}
+                        <div class="mb-2 {% if message.user.pk == user.pk %}
+                            self-end
+                            text-right
+                        {% endif %}">
+                            <span class="text-sm font-bold text-gray-600">{{message.user.first_name}}</span>
+                            <div class="mt-px p-2 w-56 rounded
+                                {% if message.user.pk != user.pk %}
+                                    bg-gray-300
+                                {% else %}
+                                    bg-blue-500
+                                    text-white
+                                {% endif %}
+                            ">
+                                {{message.message}}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                
+            </div>
+            <form class="w-full pl-10 mt-5 mx-auto" method="POST">
+                {% csrf_token %}
+                <input class="border-box mb-3 h-16" name="message" placeholder="메세지를 입력해주세요." required />
+                <button class="btn-link bg-blue-700 border-blue-700">메세지 전송</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $("#mydiv").scrollTop($("#mydiv")[0].scrollHeight);
+        });
+    </script>
+{% endblock content %}

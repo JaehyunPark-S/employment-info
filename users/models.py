@@ -7,6 +7,7 @@ from django.utils.html import strip_tags
 from django.shortcuts import reverse
 from django.template.loader import render_to_string
 from core import models as core_models
+from core import managers as core_managers
 
 
 class AbstractItem(core_models.TimeStampedModel):
@@ -95,6 +96,7 @@ class User(AbstractUser):
     like_boards = models.ManyToManyField(
         "boards.Board", related_name="users", blank=True
     )
+    objects = core_managers.CustomUserManager()
 
     def get_absolute_url(self):
         return reverse("users:profile", kwargs={"pk": self.pk})

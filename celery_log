@@ -1,0 +1,305 @@
+ 
+ -------------- celery@jaehyun v5.0.5 (singularity)
+--- ***** ----- 
+-- ******* ---- Linux-5.8.0-53-generic-x86_64-with-glibc2.29 2021-05-23 00:17:44
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         config:0x7f0c0777bca0
+- ** ---------- .> transport:   amqp://guest:**@localhost:5672//
+- ** ---------- .> results:     rpc://
+- *** --- * --- .> concurrency: 12 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . recruits.tasks.add
+  . recruits.tasks.so_crawler
+
+[2021-05-23 00:17:44,840: INFO/MainProcess] Connected to amqp://guest:**@127.0.0.1:5672//
+[2021-05-23 00:17:44,847: INFO/MainProcess] mingle: searching for neighbors
+[2021-05-23 00:17:45,865: INFO/MainProcess] mingle: all alone
+[2021-05-23 00:17:45,901: WARNING/MainProcess] /home/jaehyun/.local/share/virtualenvs/employment_info-vFMJMDEZ/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+[2021-05-23 00:17:45,901: INFO/MainProcess] celery@jaehyun ready.
+[2021-05-23 00:17:45,902: INFO/MainProcess] Received task: recruits.tasks.add[dca84392-ee37-4340-96ca-3d426d1deb0d]  
+[2021-05-23 00:17:45,903: INFO/MainProcess] Received task: recruits.tasks.so_crawler[33b1d5f1-81d5-4bd9-975a-0214750ff54a]  
+[2021-05-23 00:17:45,903: INFO/MainProcess] Received task: recruits.tasks.add[e43d884d-98ee-4673-98ff-6103232799da]  
+[2021-05-23 00:17:45,904: INFO/MainProcess] Received task: recruits.tasks.so_crawler[2d0f6f0b-2110-4899-9308-1478c51fff17]  
+[2021-05-23 00:17:45,904: INFO/MainProcess] Received task: recruits.tasks.so_crawler[6364e1ea-3ead-4997-88d3-2b128003a99e]  
+[2021-05-23 00:17:45,904: INFO/MainProcess] Received task: recruits.tasks.so_crawler[02250a90-ed9e-4e2e-8f92-9998619e308c]  
+[2021-05-23 00:17:45,905: INFO/MainProcess] Received task: recruits.tasks.so_crawler[a8dd08ad-adc0-43e0-9e08-a96ca30ef944]  
+[2021-05-23 00:17:45,906: INFO/MainProcess] Received task: recruits.tasks.so_crawler[76d51446-865a-4948-9b7d-1426f2ea0803]  
+[2021-05-23 00:17:45,906: INFO/MainProcess] Received task: recruits.tasks.so_crawler[10d1a622-c6c2-433d-a598-709beadff476]  
+[2021-05-23 00:17:45,906: INFO/MainProcess] Received task: recruits.tasks.add[5eed668f-396e-4592-8194-574ecb778341]  
+[2021-05-23 00:17:46,046: INFO/ForkPoolWorker-1] Task recruits.tasks.add[e43d884d-98ee-4673-98ff-6103232799da] succeeded in 0.03607189600006677s: 8
+[2021-05-23 00:17:46,046: INFO/ForkPoolWorker-8] Task recruits.tasks.add[5eed668f-396e-4592-8194-574ecb778341] succeeded in 0.03618660299980547s: 8
+[2021-05-23 00:17:46,047: INFO/ForkPoolWorker-10] Task recruits.tasks.add[dca84392-ee37-4340-96ca-3d426d1deb0d] succeeded in 0.0369880110010854s: 8
+[2021-05-23 00:17:46,678: WARNING/ForkPoolWorker-4] Scrapping SO: Page: 0
+[2021-05-23 00:17:46,680: WARNING/ForkPoolWorker-5] Scrapping SO: Page: 0
+[2021-05-23 00:17:47,002: WARNING/ForkPoolWorker-7] Scrapping SO: Page: 0
+[2021-05-23 00:17:47,003: WARNING/ForkPoolWorker-12] Scrapping SO: Page: 0
+[2021-05-23 00:17:47,035: WARNING/ForkPoolWorker-3] Scrapping SO: Page: 0
+[2021-05-23 00:17:47,187: WARNING/ForkPoolWorker-2] Scrapping SO: Page: 0
+[2021-05-23 00:17:47,188: WARNING/ForkPoolWorker-11] Scrapping SO: Page: 0
+[2021-05-23 00:17:47,876: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,876: WARNING/ForkPoolWorker-4] Senior Software Engineer - Maps Data Engineering
+[2021-05-23 00:17:47,876: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/528372
+[2021-05-23 00:17:47,884: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,884: WARNING/ForkPoolWorker-4] DevOps Engineer (m/w/d)
+[2021-05-23 00:17:47,884: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/372989
+[2021-05-23 00:17:47,890: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,890: WARNING/ForkPoolWorker-4] Software Testmanager (w/m/d)
+[2021-05-23 00:17:47,890: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/524851
+[2021-05-23 00:17:47,895: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,895: WARNING/ForkPoolWorker-4] Senior Software Engineer
+[2021-05-23 00:17:47,895: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/524850
+[2021-05-23 00:17:47,902: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,902: WARNING/ForkPoolWorker-4] Softwareentwickler (w/m/d) – Linux/C++
+[2021-05-23 00:17:47,902: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/524849
+[2021-05-23 00:17:47,907: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,907: WARNING/ForkPoolWorker-4] Senior Softwareentwickler (w/m/d) Applikation Linux / C++
+[2021-05-23 00:17:47,907: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/524848
+[2021-05-23 00:17:47,914: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,914: WARNING/ForkPoolWorker-4] Back-End Developer
+[2021-05-23 00:17:47,914: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/524844
+[2021-05-23 00:17:47,919: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,919: WARNING/ForkPoolWorker-4] Test Automation Engineer UI
+[2021-05-23 00:17:47,919: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/473472
+[2021-05-23 00:17:47,925: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,925: WARNING/ForkPoolWorker-4] JavaScript Developer
+[2021-05-23 00:17:47,925: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/524840
+[2021-05-23 00:17:47,930: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,930: WARNING/ForkPoolWorker-4] Site Reliability Engineer (W/M)
+[2021-05-23 00:17:47,930: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/524836
+[2021-05-23 00:17:47,935: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,935: WARNING/ForkPoolWorker-4] Web Developer – Software and Solutions team at EMBL
+[2021-05-23 00:17:47,935: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/524837
+[2021-05-23 00:17:47,941: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,941: WARNING/ForkPoolWorker-4] QA Engineer
+[2021-05-23 00:17:47,941: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/521169
+[2021-05-23 00:17:47,948: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,948: WARNING/ForkPoolWorker-4] Site Reliability Engineer (SRE), Apple Cloud Services
+[2021-05-23 00:17:47,948: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/528375
+[2021-05-23 00:17:47,955: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,955: WARNING/ForkPoolWorker-4] Cloud Infrastructure Engineer - ACS Enterprise
+[2021-05-23 00:17:47,955: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/528373
+[2021-05-23 00:17:47,963: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,963: WARNING/ForkPoolWorker-4] Site Reliability Engineer (SRE), Apple Cloud Services
+[2021-05-23 00:17:47,963: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/526579
+[2021-05-23 00:17:47,969: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,969: WARNING/ForkPoolWorker-4] AMP Provider Payment Fraud Business Analyst - Austin
+[2021-05-23 00:17:47,969: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/528371
+[2021-05-23 00:17:47,976: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,976: WARNING/ForkPoolWorker-4] Software Development Manager, Quality - Apple Pay
+[2021-05-23 00:17:47,976: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/528370
+[2021-05-23 00:17:47,981: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,981: WARNING/ForkPoolWorker-4] Software Developer in Test - Core I/O and Sensors
+[2021-05-23 00:17:47,981: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/526510
+[2021-05-23 00:17:47,985: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,985: WARNING/ForkPoolWorker-4] Big Data DevOps Engineer- Wallet & Apple Pay - Austin
+[2021-05-23 00:17:47,985: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/528369
+[2021-05-23 00:17:47,991: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,992: WARNING/ForkPoolWorker-4] Expert Java Software Engineer
+[2021-05-23 00:17:47,992: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/521165
+[2021-05-23 00:17:47,997: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:47,997: WARNING/ForkPoolWorker-4] Ingénieur Cloud Confirmé (H/F)
+[2021-05-23 00:17:47,997: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/521164
+[2021-05-23 00:17:48,002: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:48,002: WARNING/ForkPoolWorker-4] Softwareentwickler / Software Engineer - Sensorsysteme (m/w/d)
+[2021-05-23 00:17:48,002: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/524827
+[2021-05-23 00:17:48,009: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:48,009: WARNING/ForkPoolWorker-4] Software Engineer (Rust)
+[2021-05-23 00:17:48,009: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/528364
+[2021-05-23 00:17:48,015: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:48,015: WARNING/ForkPoolWorker-4] IT Praktikant (m/w/d) Big Data – Summer Internship Programme
+[2021-05-23 00:17:48,015: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/524822
+[2021-05-23 00:17:48,022: WARNING/ForkPoolWorker-4] Does Not Exist
+[2021-05-23 00:17:48,022: WARNING/ForkPoolWorker-4] Lead Systems Architect (F/M)
+[2021-05-23 00:17:48,022: WARNING/ForkPoolWorker-4] https://stackoverflow.com/jobs/521150
+[2021-05-23 00:17:48,027: WARNING/ForkPoolWorker-4] Scrapping SO: Page: 1
+[2021-05-23 00:17:48,048: WARNING/ForkPoolWorker-5] Scrapping SO: Page: 1
+[2021-05-23 00:17:48,242: WARNING/ForkPoolWorker-11] Scrapping SO: Page: 1
+[2021-05-23 00:17:48,383: WARNING/ForkPoolWorker-2] Scrapping SO: Page: 1
+[2021-05-23 00:17:48,538: WARNING/ForkPoolWorker-3] Scrapping SO: Page: 1
+[2021-05-23 00:17:48,590: WARNING/ForkPoolWorker-12] Scrapping SO: Page: 1
+[2021-05-23 00:17:48,657: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,657: WARNING/ForkPoolWorker-5] Principal Software Engineer (JoinOCI-SDE)
+[2021-05-23 00:17:48,657: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/519811
+[2021-05-23 00:17:48,665: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,665: WARNING/ForkPoolWorker-5] Senior Machine Learning Engineer (m/f/d)
+[2021-05-23 00:17:48,665: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/521147
+[2021-05-23 00:17:48,670: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,670: WARNING/ForkPoolWorker-5] Product Designer UX/UI (m/f/d) - Hamburg or Amsterdam
+[2021-05-23 00:17:48,670: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/524819
+[2021-05-23 00:17:48,676: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,677: WARNING/ForkPoolWorker-5] Data Engineer (m/f) (SQL, Python, R, Java)
+[2021-05-23 00:17:48,677: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/376577
+[2021-05-23 00:17:48,682: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,682: WARNING/ForkPoolWorker-5] SysOps Engineer
+[2021-05-23 00:17:48,682: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/524815
+[2021-05-23 00:17:48,689: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,689: WARNING/ForkPoolWorker-5] Full-Stack Technical Lead
+[2021-05-23 00:17:48,689: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/524812
+[2021-05-23 00:17:48,695: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,695: WARNING/ForkPoolWorker-5] Mobile Build and Release Engineer
+[2021-05-23 00:17:48,695: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/524811
+[2021-05-23 00:17:48,700: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,700: WARNING/ForkPoolWorker-5] DevOps Engineer (CI, CD, Cloud, Docker, Jenkins)
+[2021-05-23 00:17:48,700: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/524810
+[2021-05-23 00:17:48,706: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,706: WARNING/ForkPoolWorker-5] Database Engineer (f/m/d) - (100% remote possible)
+[2021-05-23 00:17:48,706: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/524809
+[2021-05-23 00:17:48,713: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,713: WARNING/ForkPoolWorker-5] Software Developer, Security
+[2021-05-23 00:17:48,713: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/489709
+[2021-05-23 00:17:48,719: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,719: WARNING/ForkPoolWorker-5] Senior Full Stack Developer
+[2021-05-23 00:17:48,719: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/524805
+[2021-05-23 00:17:48,725: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,725: WARNING/ForkPoolWorker-5] APIGEE Administrator
+[2021-05-23 00:17:48,725: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/521134
+[2021-05-23 00:17:48,731: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,731: WARNING/ForkPoolWorker-5] Awesome Cloud Engineer - Java, NiFi, Data (Fully Cleared)
+[2021-05-23 00:17:48,731: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/489708
+[2021-05-23 00:17:48,736: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,736: WARNING/ForkPoolWorker-5] Scientific Applications Developer
+[2021-05-23 00:17:48,736: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/396026
+[2021-05-23 00:17:48,742: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,742: WARNING/ForkPoolWorker-5] Risk Engineer
+[2021-05-23 00:17:48,742: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/521131
+[2021-05-23 00:17:48,747: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,747: WARNING/ForkPoolWorker-5] Technical Lead
+[2021-05-23 00:17:48,747: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/524804
+[2021-05-23 00:17:48,754: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,754: WARNING/ForkPoolWorker-5] Principle Site Reliability Developer (JoinOCI)
+[2021-05-23 00:17:48,754: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/522162
+[2021-05-23 00:17:48,761: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,761: WARNING/ForkPoolWorker-5] Site Reliability Engineer (JoinOCI-SDE)
+[2021-05-23 00:17:48,761: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/521931
+[2021-05-23 00:17:48,765: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,766: WARNING/ForkPoolWorker-5] Consulting Member of Technical Staff Cloud Engineering Infrastructure Development  (JoinOCI-SDE)
+[2021-05-23 00:17:48,766: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/500850
+[2021-05-23 00:17:48,773: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,773: WARNING/ForkPoolWorker-5] Sr. Software Developer - Distributed Systems - (JoinOCI-SDE)
+[2021-05-23 00:17:48,773: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/521509
+[2021-05-23 00:17:48,778: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,778: WARNING/ForkPoolWorker-5] Principal Backend Developer Cloud Engineering Infrastructure Development  (JoinOCI-SDE)
+[2021-05-23 00:17:48,779: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/500849
+[2021-05-23 00:17:48,786: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,786: WARNING/ForkPoolWorker-5] Principal Applied Cryptographer  (JoinOCI-SecGroup)
+[2021-05-23 00:17:48,786: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/522537
+[2021-05-23 00:17:48,793: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,793: WARNING/ForkPoolWorker-5] Principal Backend Developer Cloud Engineering Infrastructure Development  (JoinOCI-SDE)
+[2021-05-23 00:17:48,793: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/500854
+[2021-05-23 00:17:48,801: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,801: WARNING/ForkPoolWorker-5] Software Developer - JoinOCI
+[2021-05-23 00:17:48,802: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/528113
+[2021-05-23 00:17:48,807: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:48,807: WARNING/ForkPoolWorker-5] Consulting Member of Technical Staff, OCI Web and Mobile Services
+[2021-05-23 00:17:48,807: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/524173
+[2021-05-23 00:17:48,811: WARNING/ForkPoolWorker-5] Scrapping SO: Page: 2
+[2021-05-23 00:17:48,826: WARNING/ForkPoolWorker-7] Scrapping SO: Page: 1
+[2021-05-23 00:17:48,829: WARNING/ForkPoolWorker-4] Scrapping SO: Page: 2
+[2021-05-23 00:17:48,994: WARNING/ForkPoolWorker-3] Scrapping SO: Page: 2
+[2021-05-23 00:17:49,065: WARNING/ForkPoolWorker-12] Scrapping SO: Page: 2
+[2021-05-23 00:17:49,295: WARNING/ForkPoolWorker-7] Scrapping SO: Page: 2
+[2021-05-23 00:17:49,376: WARNING/ForkPoolWorker-11] Scrapping SO: Page: 2
+[2021-05-23 00:17:49,414: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,414: WARNING/ForkPoolWorker-5] Graduate Site Reliability Engineer - DevOps
+[2021-05-23 00:17:49,414: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/521112
+[2021-05-23 00:17:49,421: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,421: WARNING/ForkPoolWorker-5] Senior Software Developer - File system Service - Cloud Engineering Infrastructure Development (JoinOCI)
+[2021-05-23 00:17:49,421: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/524075
+[2021-05-23 00:17:49,426: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,426: WARNING/ForkPoolWorker-5] Software Development Director, Oracle Cloud (JoinOCI-Leader)
+[2021-05-23 00:17:49,426: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/500851
+[2021-05-23 00:17:49,433: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,433: WARNING/ForkPoolWorker-5] Software Engineer - Media Services (JoinOCI)
+[2021-05-23 00:17:49,433: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/528116
+[2021-05-23 00:17:49,438: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,438: WARNING/ForkPoolWorker-5] Computer Design Engineer - Entry/Mid-Level
+[2021-05-23 00:17:49,438: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/521124
+[2021-05-23 00:17:49,444: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,444: WARNING/ForkPoolWorker-5] Senior Software Engineer (Scientific), Imaging, Science
+[2021-05-23 00:17:49,444: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/474461
+[2021-05-23 00:17:49,449: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,449: WARNING/ForkPoolWorker-5] Azure Network/Cloud Engineer (TS Clearance Required)
+[2021-05-23 00:17:49,449: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/524793
+[2021-05-23 00:17:49,455: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,456: WARNING/ForkPoolWorker-5] Senior Manager, Machine Learning Engineering
+[2021-05-23 00:17:49,456: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/524792
+[2021-05-23 00:17:49,460: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,460: WARNING/ForkPoolWorker-5] Sr. Staff Software Engineer - Surgical Applications
+[2021-05-23 00:17:49,460: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/524791
+[2021-05-23 00:17:49,465: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,465: WARNING/ForkPoolWorker-5] Hackers wanted - Software Engineers & Machine Learning Expert (m/f/d)
+[2021-05-23 00:17:49,465: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/165266
+[2021-05-23 00:17:49,470: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,470: WARNING/ForkPoolWorker-5] Hackers wanted - Software Engineer & Machine Learning Expert (m/f/d)
+[2021-05-23 00:17:49,470: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/254089
+[2021-05-23 00:17:49,477: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,477: WARNING/ForkPoolWorker-5] Software Architect - Remote
+[2021-05-23 00:17:49,477: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/522641
+[2021-05-23 00:17:49,482: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,482: WARNING/ForkPoolWorker-5] Senior Data Engineer (Scala and Spark experience) - Remote
+[2021-05-23 00:17:49,482: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/522646
+[2021-05-23 00:17:49,488: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,488: WARNING/ForkPoolWorker-5] Senior Data Engineer (Python) - Remote
+[2021-05-23 00:17:49,488: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/526607
+[2021-05-23 00:17:49,492: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,492: WARNING/ForkPoolWorker-5] Infrastructure Engineer
+[2021-05-23 00:17:49,492: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/474198
+[2021-05-23 00:17:49,497: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,497: WARNING/ForkPoolWorker-5] Senior DevOps Engineer (AWS)
+[2021-05-23 00:17:49,497: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/528354
+[2021-05-23 00:17:49,501: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,501: WARNING/ForkPoolWorker-5] Senior Software Engineer - Python
+[2021-05-23 00:17:49,501: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/497630
+[2021-05-23 00:17:49,506: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,506: WARNING/ForkPoolWorker-5] Master Java Engineer
+[2021-05-23 00:17:49,506: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/528348
+[2021-05-23 00:17:49,515: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,515: WARNING/ForkPoolWorker-5] Senior Software Engineer
+[2021-05-23 00:17:49,515: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/522825
+[2021-05-23 00:17:49,522: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,522: WARNING/ForkPoolWorker-5] Technology Service Owner
+[2021-05-23 00:17:49,522: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/524775
+[2021-05-23 00:17:49,527: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,527: WARNING/ForkPoolWorker-5] Lead Data Mesh Engineer
+[2021-05-23 00:17:49,527: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/524774
+[2021-05-23 00:17:49,532: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,532: WARNING/ForkPoolWorker-5] Senior Devops Engineer / SRE Engineer
+[2021-05-23 00:17:49,533: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/528335
+[2021-05-23 00:17:49,537: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,537: WARNING/ForkPoolWorker-5] Cloud Data Engineer (m/w/d)
+[2021-05-23 00:17:49,537: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/474177
+[2021-05-23 00:17:49,542: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,542: WARNING/ForkPoolWorker-5] Software Developer
+[2021-05-23 00:17:49,542: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/524769
+[2021-05-23 00:17:49,548: WARNING/ForkPoolWorker-5] Does Not Exist
+[2021-05-23 00:17:49,548: WARNING/ForkPoolWorker-5] DevOps Engineer #London #FinTech
+[2021-05-23 00:17:49,548: WARNING/ForkPoolWorker-5] https://stackoverflow.com/jobs/452401
+[2021-05-23 00:17:49,552: WARNING/ForkPoolWorker-5] Success
+[2021-05-23 00:17:49,559: INFO/ForkPoolWorker-5] Task recruits.tasks.so_crawler[10d1a622-c6c2-433d-a598-709beadff476] succeeded in 3.5495376369981386s: None
+[2021-05-23 00:17:49,587: WARNING/ForkPoolWorker-2] Scrapping SO: Page: 2
+[2021-05-23 00:17:49,781: WARNING/ForkPoolWorker-4] Success
+[2021-05-23 00:17:49,787: INFO/ForkPoolWorker-4] Task recruits.tasks.so_crawler[76d51446-865a-4948-9b7d-1426f2ea0803] succeeded in 3.7775792659995204s: None
+[2021-05-23 00:17:49,939: WARNING/ForkPoolWorker-3] Success
+[2021-05-23 00:17:49,945: INFO/ForkPoolWorker-3] Task recruits.tasks.so_crawler[02250a90-ed9e-4e2e-8f92-9998619e308c] succeeded in 3.935734093996871s: None
+[2021-05-23 00:17:50,065: WARNING/ForkPoolWorker-12] Success
+[2021-05-23 00:17:50,073: INFO/ForkPoolWorker-12] Task recruits.tasks.so_crawler[2d0f6f0b-2110-4899-9308-1478c51fff17] succeeded in 4.063635534999776s: None
+[2021-05-23 00:17:50,083: WARNING/ForkPoolWorker-7] Success
+[2021-05-23 00:17:50,091: INFO/ForkPoolWorker-7] Task recruits.tasks.so_crawler[a8dd08ad-adc0-43e0-9e08-a96ca30ef944] succeeded in 4.080847003002418s: None
+[2021-05-23 00:17:50,313: WARNING/ForkPoolWorker-2] Success
+[2021-05-23 00:17:50,320: INFO/ForkPoolWorker-2] Task recruits.tasks.so_crawler[6364e1ea-3ead-4997-88d3-2b128003a99e] succeeded in 4.310349357001542s: None
+[2021-05-23 00:17:50,387: WARNING/ForkPoolWorker-11] Success
+[2021-05-23 00:17:50,393: INFO/ForkPoolWorker-11] Task recruits.tasks.so_crawler[33b1d5f1-81d5-4bd9-975a-0214750ff54a] succeeded in 4.383912004999729s: None
+
+worker: Hitting Ctrl+C again will terminate all running tasks!
+
+worker: Warm shutdown (MainProcess)

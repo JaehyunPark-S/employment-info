@@ -167,16 +167,16 @@ EMAIL_HOST_PASSWORD = os.environ.get("MAILGUN_PASSWORD")
 EMAIL_FROM = "recruit@sandbox0fc2ec79576e425ba933e2fecfc15477.mailgun.org"
 
 
-CELERY_BROKER_URL = "amqp://localhost"
+CELERY_BROKER_URL = "amqp://guest:guest@localhost//"
 CELERY_RESULT_BACKEND = "rpc://"
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = "Asia/Seoul"
 
-# CELERY_BEAT_SCHEDULE = {
-#     "task-number-one": {
-#         "task": "recruits.tasks.so_crawler",
-#         "schedule": crontab(minute=0, hour=0),
-#     }
-# }
+CELERY_BEAT_SCHEDULE = {
+    "task-number-one": {
+        "task": "recruits.tasks.so_crawler",
+        "schedule": crontab(),
+    }
+}

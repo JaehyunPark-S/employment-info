@@ -107,7 +107,7 @@ def github_callback(request):
                 if username is not None:
                     name = profile_json.get("name")
                     email = profile_json.get("email")
-                    bio = profile_json.get("bio")
+
                     try:
                         user = models.User.objects.get(email=email)
                         if user.login_method != models.User.LOGIN_GITHUB:
@@ -117,7 +117,7 @@ def github_callback(request):
                             email=email,
                             first_name=name,
                             username=email,
-                            bio=bio,
+                            
                             login_method=models.User.LOGIN_GITHUB,
                             email_verified=True,
                         )

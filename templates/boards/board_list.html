@@ -81,7 +81,7 @@
                             <a href="{{follow.get_absolute_url}}"><span class="text-lg ml-2">{{follow.first_name}}</span></a>
                         </div>
                         <div>
-                            <a href="#"><span class="mr-3 border p-1 rounded-md bg-green-400 border-green-400 text-white font-light">팔로우</span></a>
+                            <a href="{% url 'conversations:go' user.pk follow.pk %}"><span class="mr-3 border p-1 rounded-md bg-green-400 border-green-400 text-white font-light">메세지 전송</span></a>
                         </div>
                     </div>
                     {% endfor %}
@@ -100,7 +100,7 @@
                             <a href="{{follow.get_absolute_url}}"><span class="text-lg ml-2">{{follow.first_name}}</span></a>
                         </div>
                         <div>
-                            <a href="#"><span class="mr-3 border p-1 rounded-md bg-red-400 border-red-400 text-white font-light">팔로우 취소</span></a>
+                            <a href="{% url 'conversations:go' user.pk follow.pk %}"><span class="mr-3 border p-1 rounded-md bg-green-400 border-green-400 text-white font-light">메세지 전송</span></a>
                         </div>
                     </div>
                     {% endfor %}

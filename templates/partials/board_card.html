@@ -84,7 +84,7 @@
       </a>
     </div>
     <div>
-      <button class="hover:bg-gray-200 rounded-md p-1 focus:outline-none btn_toggle" data-id="{{board.pk}}"><i class="far fa-comment-alt"></i><span class="ml-2">댓글</span></button>
+      <button class="hover:bg-gray-200 rounded-md p-1 focus:outline-none btn_toggle" data-id="{{board.pk}}"><i class="far fa-comment-alt"></i><span class="ml-2">댓글({{board.comment.count}})</span></button>
     </div>
     <div class="hidden" id="til{{board.pk}}">
       <form method="POST" action="{% url 'comments:comment-write' board.pk %}" class="pt-2 pb-1">

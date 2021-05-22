@@ -1,5 +1,6 @@
 <ul class="flex items-center text-sm font-bold h-full">
   {% if user.is_authenticated %}
+  <li class="nav_link"><a href="{% url 'conversations:list' user.pk %}"><span class="text-white">채팅</span></a></li>
   <li class="nav_link"><a href="{% url "recruits:info" %}"><span class="text-white">채용공고</span></a></li>
   <li class="nav_link"><a href="{{user.get_absolute_url}}"><span class="text-white">프로필</span></a></li>
   <li class="nav_link"><a href="{% url "users:logout" %}"><span class="text-white">로그아웃</span></a></li>      
