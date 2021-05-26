@@ -13,13 +13,15 @@ def go_conversations(request, a_pk, b_pk):
     user_one = user_models.User.objects.get_or_none(pk=a_pk)
     user_two = user_models.User.objects.get_or_none(pk=b_pk)
     if user_one is not None and user_two is not None:
-        try:
+        conversation = models.Conversation.objects.filter(
+            participants__in=[user_one]
+        ).filter(participants__in=[user_two])
+        if conversation.count() == 0:
+            conversation = models.Conversation.objects.create()
+            conversation.participants.add(user_one, user_two)
             conversation = models.Conversation.objects.filter(
                 participants__in=[user_one]
             ).filter(participants__in=[user_two])
-        except models.Conversation.DoesNotExist:
-            conversation = models.Conversation.objects.create()
-            conversation.participants.add(user_one, user_two)
         return redirect(
             reverse("conversations:detail", kwargs={"pk": conversation[0].pk})
         )

@@ -117,7 +117,6 @@ def github_callback(request):
                             email=email,
                             first_name=name,
                             username=email,
-                            
                             login_method=models.User.LOGIN_GITHUB,
                             email_verified=True,
                         )
@@ -257,39 +256,32 @@ def delete_avatar(request, pk):
     return redirect(reverse("users:profile", kwargs={"pk": pk}))
 
 
-# Django Follow
-# def follow(request, pk):
-#     try:
-#         me = request.user
-#         user = models.User.objects.get(pk=pk)
-#     except models.User.DoesNotExist:
-#         return redirect(reverse("core:home"))
-#     try:
-#         follower_user = models.FollowRelation.objects.get(follower=user)
-#     except models.FollowRelation.DoesNotExist:
-#         follower_user = models.FollowRelation.objects.create(follower=user)
+def profile_follow(request, pk):
+    try:
+        me = request.user
+        user = models.User.objects.get(pk=pk)
+    except models.User.DoesNotExist:
+        return redirect(reverse("core:home"))
+    try:
+        follower_user = models.FollowRelation.objects.get(follower=user)
+    except models.FollowRelation.DoesNotExist:
+        follower_user = models.FollowRelation.objects.create(follower=user)
 
-#     try:
-#         if user == me:
-#             raise IntegrityError("잘못된 요청입니다.")
-#         if me in follower_user.following.all():
-#             follower_user.following.remove(me)
-#             # me.followings.remove(user)
-#             user.followers.remove(me)
-#         else:
-#             print(follower_user.follower)
-#             print(me)
-#             follower_user.following.add(me)
-#             # me.followings.add(user)
-#             user.followers.add(me)
-#         me.save()
-#         user.save()
-#         follower_user.save()
-#     except IntegrityError as e:
-#         messages.error(request, e)
-#         return redirect(reverse("core:home"))
-
-#     return redirect(reverse("core:home"))
+    try:
+        if user == me:
+            raise IntegrityError("잘못된 요청입니다.")
+        if me in follower_user.following.all():
+            follower_user.following.remove(me)
+            me.followings.remove(user)
+        else:
+            follower_user.following.add(me)
+            me.followings.add(user)
+        me.save()
+        follower_user.save()
+    except IntegrityError as e:
+        messages.error(request, e)
+        return redirect(reverse("core:home"))
+    return redirect(reverse("users:profile", kwargs={"pk": me.pk}))
 
 
 @require_POST

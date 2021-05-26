@@ -11,11 +11,11 @@
      
     <div class="container ml-75vh my-10 mt-28 flex min-h-50vh">
 
-        <div class="scrollbar border w-1/4 border-gray-600 bg-white max-h-60vh text-center overflow-y-scroll">
+        <div class=" border w-1/4 bg-white text-center rounded-xl">
             <div class="mt-3">
             <span class="font-bold text-lg">{{user.first_name}}님의 채팅방</span>
             </div>
-            <div class="flex flex-col justify-between items-center">
+            <div class="scrollbar flex flex-col justify-between items-center overflow-y-scroll max-h-60vh">
                 {% for conv in conversation  %}
                     {% for users in conv.participants.all %}
                         {% if user == users %}

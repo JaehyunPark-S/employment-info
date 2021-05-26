@@ -71,28 +71,9 @@
             <div class=" container lg:w-5/12 md:w-1/2 xl:w-1/5 mr-28 flex flex-col">
                 <div class="text-center border rounded-xl border-gray-300 bg-white">
                     <div class="mb-3 mt-3">
-                        <span class="font-bold border-b">{{user.first_name}}님의 팔로워</span>
-                    </div>
-                    <div class="scrollbar container w-full overflow-y-scroll" style="height: 300px;">
-                    {% for follow in user.follower.following.all %}
-                    <div class="flex justify-between items-center mb-4">
-                        <div class="flex ml-4 items-center">
-                            {% include 'mixins/user_avatar.html' with user=follow h_and_w='w-6 h-6' text='text-xs' %}
-                            <a href="{{follow.get_absolute_url}}"><span class="text-lg ml-2">{{follow.first_name}}</span></a>
-                        </div>
-                        <div>
-                            <a href="{% url 'conversations:go' user.pk follow.pk %}"><span class="mr-3 border p-1 rounded-md bg-green-400 border-green-400 text-white font-light">메세지 전송</span></a>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-                </div>
-
-                <div class="text-center border rounded-xl border-gray-300 mt-12 bg-white">
-                    <div class="mb-3 mt-3">
                         <span class="font-bold border-b">{{user.first_name}}님이 팔로우한 사람들</span>
                     </div>
-                    <div class="scrollbar container w-full overflow-y-scroll" style="height: 300px;">
+                    <div class="scrollbar container w-full overflow-y-scroll" style="height: 600px;">
                     {% for follow in user.followings.all %}
                     <div class="flex justify-between items-center mb-4">
                         <div class="flex ml-4 items-center">
@@ -100,7 +81,12 @@
                             <a href="{{follow.get_absolute_url}}"><span class="text-lg ml-2">{{follow.first_name}}</span></a>
                         </div>
                         <div>
-                            <a href="{% url 'conversations:go' user.pk follow.pk %}"><span class="mr-3 border p-1 rounded-md bg-green-400 border-green-400 text-white font-light">메세지 전송</span></a>
+                            <a href="{% url 'conversations:go' user.pk follow.pk %}">
+                                <span class="mr-3 border p-1 rounded-md bg-gray-400 border-gray-400 text-white font-light">
+                                    <i class="fas fa-comment-dots"></i>
+                                    메세지 전송
+                                </span>
+                            </a>
                         </div>
                     </div>
                     {% endfor %}
