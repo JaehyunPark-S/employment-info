@@ -49,11 +49,11 @@
 <details>
 <summary>각 테이블 별 CRUD</summary>
 
-1. 사용자 CRUD
-2. 댓글 CRUD
-3. 게시판 CRUD
-4. 채용공고 CRUD
-5. 채팅(채팅방, 메세지) CRUD
+- 사용자 CRUD
+- 댓글 CRUD
+- 게시판 CRUD
+- 채용공고 CRUD
+- 채팅(채팅방, 메세지) CRUD
 </details>
 </br>
 <details>
